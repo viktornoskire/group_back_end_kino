@@ -430,6 +430,11 @@ main .info .open-div :hover {
   overflow-y: auto;
   padding: 1rem;
 }
+#navigation-menu .menu-overlay .active {
+  opacity: 1;
+  display: flex;
+  pointer-events: all;
+}
 #navigation-menu .menu-overlay .overlay-logo {
   margin-top: 2rem;
   display: flex;
@@ -706,7 +711,7 @@ main .info .open-div :hover {
   margin: 1em auto;
 }
 .movie-container .movie-card img {
-  max-width: 15rem;
+  width: 100%;
   height: 20rem;
   display: block;
   object-fit: cover;

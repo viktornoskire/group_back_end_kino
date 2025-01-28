@@ -36,7 +36,6 @@ const api = {
     ];
 
     const movie = movies.find((m) => m.id === parseInt(id));
-    console.log(movie);
     return movie || null
   },
   loadMovies: async () => [
