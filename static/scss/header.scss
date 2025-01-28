@@ -85,6 +85,11 @@
     }
   }
   .menu-overlay {
+    & .active {
+      opacity: 1;
+      display: flex;
+      pointer-events: all;
+    }
     position: fixed;
     top: 50%;
     left: 50%;

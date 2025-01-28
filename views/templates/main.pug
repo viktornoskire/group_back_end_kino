@@ -22,6 +22,15 @@ html(lang="en")
                                     a(href=link.link)= link.text
                         button.hamburger-btn
                             i(class="fas fa-bars")
+                .menu-overlay(style="display: none")
+                    button.close-btn
+                        i(class="fas fa-times")
+                    .overlay-logo
+                        img.overlay-logo(src="./img/kinoLogoOverlay.png" alt="Picture for the brands logotype.")
+                    ul.menu-links 
+                        each link in data.header.hamburgerMenu.menuLinks 
+                                li
+                                    a(href=link.link)= link.text
                 .overlay-blur
         block content
         footer.footer-container

@@ -1,4 +1,4 @@
-// ____________________________________________________
+// __Events for the info modal___________________________________________________________
 if (document.querySelector('.movie-headline') || document.querySelector('.about-page')) {
   const item0 = document.querySelector('.modal-item-0');
   const item1 = document.querySelector('.modal-item-1');
@@ -26,3 +26,18 @@ if (document.querySelector('.movie-headline') || document.querySelector('.about-
   addListener(item1);
   addListener(item2);
 }
+
+// __Events for the header____________________________________
+const r = document.querySelector('.hamburger-btn'),
+  n = document.querySelector('.close-btn'),
+  l = document.querySelector('.menu-overlay'),
+  t = document.querySelector('.overlay-blur');
+r.addEventListener('click', () => {
+  l.style.display = "block", t.classList.add('active');
+});
+n.addEventListener('click', () => {
+  l.style.display = "none", t.classList.remove('active');
+});
+t.addEventListener('click', () => {
+  (l.style.display = "none"), t.classList.remove('active');
+});
