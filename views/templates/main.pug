@@ -1,0 +1,50 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", type="text/css", href="./static/style.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css")
+        block title 
+        script(defer src="./static/eventListeners.js")
+    body 
+        header 
+            #navigation-menu 
+                nav.main-nav 
+                    .nav-left 
+                        a(href="/")
+                            img(src=data.header.mainHeader.logo, alt=data.header.mainHeader.alt).nav-logo
+                        a(href="/")
+                            span.brand-name= data.header.mainHeader.brandName
+                    .nav-right
+                        ul.menu-links
+                            each link in data.header.hamburgerMenu.menuLinks 
+                                li
+                                    a(href=link.link)= link.text
+                        button.hamburger-btn
+                            i(class="fas fa-bars")
+                .overlay-blur
+        block content
+        footer.footer-container
+            .sections-container
+                - const contact = data.footer.sections[0]
+                .footer-section
+                    h4= contact.title
+                    ul 
+                        li E-post: #{contact.contact.mail}
+                        li Telefonnummer #{contact.contact.phoneNumber}
+                - const social = data.footer.sections[1]
+                .footer-section
+                    h4= social.title
+                    ul 
+                        each link in social.links
+                            li
+                                img(src=link.icon, alt=link.name).footer-icon
+                                a(href=link.url).footer-a= link.name
+                - const adress = data.footer.sections[2]
+                .footer-section
+                    h4= adress.title
+                    ul
+                        li= adress.adress.street
+                        li= adress.adress.town
+                        li
+                            a(href=adress.adress.url).footer-afind= adress.adress.findUs

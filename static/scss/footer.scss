@@ -1,0 +1,57 @@
+@use './lib.scss' as *;
+
+.footer-container {
+  background-color: $background-div-color;
+  border-radius: 2rem;
+  padding: 2rem 2rem 1rem 2rem;
+  margin: 1rem;
+
+  .section-container {
+    display: flex;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  li {
+    list-style: none;
+    margin-left: -2.5rem;
+  }
+
+  .footer-icon {
+    height: 2.5rem;
+  }
+
+  .footer-a {
+    color: $red-color;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    bottom: 0.8rem;
+  }
+
+  .footer-afind {
+    margin-left: 0;
+    color: $red-color;
+    margin-bottom: 3rem;
+  }
+  span {
+    display: block;
+    border-top: 0.5rem solid $text-color-secondary;
+    margin-top: 2rem;
+  }
+
+  .footer-logo {
+    height: 4rem;
+    display: inline;
+    margin-top: 1rem;
+  }
+  .footer-logotext {
+    display: inline;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    position: relative;
+    bottom: 1.5rem;
+  }
+}

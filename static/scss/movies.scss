@@ -1,0 +1,60 @@
+@use './lib.scss' as *;
+
+.movie-headline {
+  max-width: 1280px;
+  background-color: $background-color;
+  margin: 0 auto;
+  padding: 0 1rem;
+  font-size: 1rem;
+  color: $text-color-main;
+  font-weight: 700;
+}
+.movie-container {
+  max-width: 1280px;
+  background-color: $background-color;
+  color: $text-color-main;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0 1rem;
+  margin: 1em auto;
+  .movie-card {
+    img {
+      max-width: 15rem;
+      height: 20rem;
+      display: block;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    a {
+     font-size: 1rem;
+      font-weight: 400;
+      margin: 0;
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        cursor: pointer;
+      } 
+    }
+    p {
+      font-size: 0.8rem;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .movie-headline {
+    font-size: 1.3rem;
+  }
+  .movie-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .movie-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

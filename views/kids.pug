@@ -1,0 +1,50 @@
+extends templates/main
+
+block title 
+    title Kids
+
+block content 
+    .div-hero 
+        img(src="./img/heroBarnkalasDesktop.png" alt="balloons").kids-hero
+        img(src="./img/heroText.png" alt="Kino").kids-img
+    article.article-kids
+        .kids-div 
+            h2.kids-header Boka barnkalas idag! 
+            button.kids-button Boka barnkalas! 
+            h1.kids-mainHeader(style="display: none;")
+            p.kids-text. 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                In rutrum at nibh rutrum gravida. Pellentesque tincidunt 
+                nulla et nibh finibus, in vehicula libero iaculis. Nulla facilisi. 
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, 
+                per inceptos himenaeos. Nam in sapien scelerisque, consequat 
+                metus vel, egestas dui. Nulla tempus convallis urna. Morbi nec 
+                aliquet ante, eu gravida metus. Mauris nec leo eget libero euismod efficitur.
+    article.article-party
+        .party-div 
+            img(src="./img/pizzaparty.png", alt="kids on a party eating pizza").party-img
+            .party-styling 
+                h2.party-header Pizzaparty! 
+                p.party-text. 
+                    Boka kalas där barnen får en fantastisk upplevelse 
+                    med nybakta pizzor från stans bästa pizzeria 
+                ol.party-list 
+                    li.party-listItem Pizza
+                    li.party-listItem Läsk och saft
+                    li.party-listItem Specialplats för födelsebarnet
+                    li.party-listItem Extraordinär filmupplevelse
+                button.party-button Boka pizzaparty!
+        .party-div 
+            img(src="./img/glassparty.png", alt="kids on a party eating ice cream").party-img
+            .party-styling 
+                h2.party-header Glassparty! 
+                p.party-text. 
+                    Boka kalas där barnen får en kylande upplevelse som man 
+                    aldrig kommer glömma! Med glass från Sveriges bästa glassproffs! 
+                ol.party-list 
+                    li.party-listItem Glass i stora lass
+                    li.party-listItem Massor med topping
+                    li.party-listItem Läsk och saft
+                    li.party-listItem Specialplats för födelsebarnet
+                    li.party-listItem Extraordinär filmupplevelse
+                button.party-button Boka pizzaparty!

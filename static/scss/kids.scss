@@ -1,0 +1,175 @@
+@use './lib.scss' as *;
+
+.div-hero {
+  display: flex;
+  justify-content: center;
+
+  .kids-hero {
+    position: absolute;
+
+    @include breakpoint($screen-mini) {
+      width: 90%;
+    }
+  }
+
+  .kids-img {
+    position: relative;
+    margin-top: 3.75rem;
+    z-index: 999;
+
+    @include breakpoint($screen-mini) {
+      width: 50%;
+      margin-top: 12%;
+    }
+
+    @include breakpointMinWidth($screen-medium) {
+      margin-top: 8%;
+    }
+  }
+}
+
+.article-kids {
+  max-width: 480px;
+  margin: auto;
+
+  @include breakpointMinWidth($screen-medium) {
+    max-width: 1280px;
+  }
+
+  .kids-div {
+    color: $text-color-main;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+
+    .kids-header {
+      margin-top: 15%;
+      font-size: 1.5rem;
+
+      @include breakpointMinWidth($screen-medium) {
+        font-size: 2.5rem;
+        font-weight: normal;
+      }
+    }
+
+    .kids-mainHeader {
+      font-size: 2.5rem;
+      font-weight: normal;
+      margin-top: 0.625rem;
+      margin-bottom: 0.625rem;
+    }
+
+    .kids-text {
+      font-size: 1.5rem;
+      margin-top: 0.626rem;
+      margin-bottom: 3.125rem;
+
+      @include breakpointMinWidth($screen-medium) {
+        font-size: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+      }
+    }
+
+    .kids-button {
+      background-color: $red-color;
+      padding: 0.625rem 2.5rem;
+      border-radius: 1.5rem;
+      color: $text-color-main;
+      border-color: transparent;
+
+      @include breakpointMinWidth($screen-medium) {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
+
+.article-party {
+  max-width: 480px;
+  margin: auto;
+
+  justify-content: center;
+
+  @include breakpointMinWidth($screen-medium) {
+    display: flex;
+    max-width: 1280px;
+  }
+
+  .party-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3.75rem;
+    padding: 1.25rem;
+
+    @include breakpointMinWidth($screen-medium) {
+      max-width: 550px;
+    }
+
+    .party-img {
+      z-index: 999;
+      max-width: 388px;
+
+      @include breakpoint($screen-mini) {
+        width: 85%;
+      }
+
+      @include breakpointMinWidth($screen-medium) {
+        max-width: 100%;
+      }
+    }
+
+    .party-styling {
+      display: grid;
+      grid-template-columns: 1.25rem auto 1.25rem;
+      background-color: $text-color-main;
+      color: black;
+      padding-top: 5rem;
+      padding-bottom: 1.25rem;
+      border-radius: 1.8rem;
+      margin-top: -7.8rem;
+
+      @include breakpointMinWidth($screen-medium) {
+        height: 500px;
+        grid-template-rows: max-content;
+      }
+
+      .party-header {
+        grid-column: 2;
+        font-size: 2.25rem;
+        margin-top: 3rem;
+        margin-bottom: 0;
+
+        @include breakpointMinWidth($screen-medium) {
+          margin-top: 3rem;
+        }
+      }
+
+      .party-text {
+        grid-column: 2;
+        margin-bottom: 0.625rem;
+      }
+
+      .party-list {
+        grid-column: 2;
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .party-button {
+        grid-column: 2;
+        justify-self: end;
+        background-color: $red-color;
+        padding: 0.625rem 2.5rem;
+        border-radius: 1.5rem;
+        color: $text-color-main;
+        border-color: transparent;
+
+        @include breakpointMinWidth($screen-medium) {
+          font-size: 1.25rem;
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+}

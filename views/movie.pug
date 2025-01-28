@@ -1,0 +1,24 @@
+extends templates/main  
+
+block title
+    title= movie.title
+
+block content 
+    main.main 
+        a(href="/").home-page
+            h2 Back to the home page
+        h1.movie-title= movie.title 
+        img.movie-img(src=movie.image.url, alt="" style="width: 25rem;")
+        .movie-desc!= movie.intro
+        .book-btns 
+            button.change-city Välj stad
+            button.view-tickets Visa biljetter
+        .accessibility 
+            h3.accessibility-ti Tillgänglighet
+            p.accessibility-tx. 
+                Kino Sandviken är tillgänglig för alla! Våra lokaler har 
+                rullstolsanpassade ingångar, ramper och sittplatser i varje salong.
+                För gäster med nedsatt hörsel erbjuder vi hörslingor och 
+                textade visningar, och för de med nedsatt syn finns syntolkning 
+                tillgänglig vid utvalda filmer. Vår personal finns alltid på 
+                plats för att hjälpa till och göra besöket så smidigt som möjligt.

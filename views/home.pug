@@ -1,0 +1,63 @@
+extends templates/main
+
+block title 
+    title Home 
+
+block content 
+    main 
+        .info 
+            .info1 
+                h1.cinema-title Kino Sandviken
+                p.cinema-open Öppet idag 17:00 - 21:00
+                .info-modal
+                    p.modal-title Vanliga frågor
+                    ul.info-modal-list  
+                        li.modal-item-0 
+                            img(class="modal-open" src="./img/QnAOpen.png" alt="Plus icon with circle around")
+                            p.modal-question Kort om biografen 
+                            p.modal-answer(style="display: none;"). 
+                                Kino Sandviken är en charmig och modern biograf 
+                                som ligger i hjärtat av den fantastiska staden Sandviken. 
+                                Biografen erbjuder en unik filmupplevelse med sina tre toppmoderna salonger, 
+                                varav en är utrustad med en exklusiv IMAX-duk för enastående 
+                                bild- och ljudkvalitet. Med ett brett urval av filmer - från 
+                                stora blockbusters till indiefilmer och klassiker - har Kino Sandviken 
+                                något för alla smaker. Det är en självklar mötesplats för filmälskare 
+                                i alla åldrar!
+                        li.modal-item-1 
+                            img(class="modal-open" src="./img/QnAOpen.png" alt="Plus icon with circle around")
+                            p.modal-question Tillgänglighet 
+                            p.modal-answer(style="display: none;"). 
+                                Kino Sandviken är tillgänglig för alla! Våra lokaler har 
+                                rullstolsanpassade ingångar, ramper och sittplatser i varje salong.
+                                För gäster med nedsatt hörsel erbjuder vi hörslingor och 
+                                textade visningar, och för de med nedsatt syn finns syntolkning 
+                                tillgänglig vid utvalda filmer. Vår personal finns alltid på 
+                                plats för att hjälpa till och göra besöket så smidigt som möjligt.
+                        li.modal-item-2
+                            img(class="modal-open" src="./img/QnAOpen.png" alt="Plus icon with circle around")
+                            p.modal-question Öppettider 
+                            .modal-answer(style="display: none;") Biografen stränger 15 minuter efter föreställningen
+                                each date in data.open 
+                                    .open-times
+                                        p.open-times-day= date.dag
+                                        p.open-times-date= date.datum
+                                        p.open-times-time= date.tid
+            .info2
+                .open-div 
+                    h3.desktop-open-title Öppettider
+                    p.desktop-open-paragraph Biografen stänger 15 minuter efter föreställningen
+                        each date in data.open 
+                            .open-times
+                                p.open-times-day= date.dag
+                                p.open-times-date= date.datum
+                                p.open-times-time= date.tid
+                img(src="./img/kinoImg.png" alt="Image with kino logo" class="kino-img")
+        h3.movie-headline Visas nu på KINO Sandviken
+        .movie-container
+            each movie in movies 
+                .movie-card
+                    a(href=`/movies/${movie.id}`)  
+                        img(src=movie.image.url, alt=movie.title)
+                    a(href=`/movies/${movie.id}`)
+                        h2= movie.title

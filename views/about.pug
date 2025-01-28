@@ -1,0 +1,73 @@
+extends templates/main
+
+block title 
+    title About
+
+block content 
+    main.about-page 
+        section.about-main-header 
+            h1 Om oss
+        section.about-header 
+            h2 Om KINO Sandviken
+        article(class="about-section section-1")
+            h3 Om företaget
+            p. 
+                Sedan 2023 har Kino Bio varit stadens biograf för filmälskare. 
+                Här möts klassisk charm och modern teknik i våra toppmoderna 
+                salonger. Vi visar allt från storfilmer till indiefavoriter 
+                och bjuder på en unik bioupplevelse för alla. Kom och upplev 
+                filmens värld hos oss – din berättelse börjar här! 
+        article(class="about-section section-2")
+            h3 Vi Gör Bioupplevelsen Bättre
+            p. 
+                På Kino Bio är vårt löfte att alltid erbjuda en bioupplevelse
+                 utöver det vanliga. Vi strävar efter att skapa minnesvärda
+                  stunder och förstklassig underhållning som gör varje besök 
+                  unikt och oförglömligt.
+        article(class="about-section section-3")
+            h3 Upplev Bubbelpoolsbio på Kino Bio
+            p. 
+                Hos oss tar vi bioupplevelsen till nästa nivå med vår exklusiva 
+                bubbelpoolsbio. Koppla av i en varm bubbelpool samtidigt 
+                som du njuter av de senaste filmerna på en storslagen skärm. 
+                Perfekt för en lyxig filmkväll med vänner eller en romantisk 
+                stund. Kombinera avslappning och underhållning på ett sätt du 
+                aldrig upplevt tidigare!
+        article(class="about-section section-4")
+            h3 Vår Webbplats och App
+            p Kinos app kan du enkelt ladda ner på App Store eller Google Play.
+        .information
+            .info-modal
+                    p.modal-title Vanliga frågor
+                    ul.info-modal-list  
+                        li.modal-item-0 
+                            img(class="modal-open" src="./img/QnAOpen.png" alt="Plus icon with circle around")
+                            p.modal-question Kort om biografen 
+                            p.modal-answer(style="display: none;"). 
+                                Kino Sandviken är en charmig och modern biograf 
+                                som ligger i hjärtat av den fantastiska staden Sandviken. 
+                                Biografen erbjuder en unik filmupplevelse med sina tre toppmoderna salonger, 
+                                varav en är utrustad med en exklusiv IMAX-duk för enastående 
+                                bild- och ljudkvalitet. Med ett brett urval av filmer - från 
+                                stora blockbusters till indiefilmer och klassiker - har Kino Sandviken 
+                                något för alla smaker. Det är en självklar mötesplats för filmälskare 
+                                i alla åldrar!
+                        li.modal-item-1 
+                            img(class="modal-open" src="./img/QnAOpen.png" alt="Plus icon with circle around")
+                            p.modal-question Tillgänglighet 
+                            p.modal-answer(style="display: none;"). 
+                                Kino Sandviken är tillgänglig för alla! Våra lokaler har 
+                                rullstolsanpassade ingångar, ramper och sittplatser i varje salong.
+                                För gäster med nedsatt hörsel erbjuder vi hörslingor och 
+                                textade visningar, och för de med nedsatt syn finns syntolkning 
+                                tillgänglig vid utvalda filmer. Vår personal finns alltid på 
+                                plats för att hjälpa till och göra besöket så smidigt som möjligt.
+                        li.modal-item-2
+                            img(class="modal-open" src="./img/QnAOpen.png" alt="Plus icon with circle around")
+                            p.modal-question Öppettider 
+                            .modal-answer(style="display: none;") Biografen stränger 15 minuter efter föreställningen
+                                each date in data.open 
+                                    .open-times
+                                        p.open-times-day= date.dag
+                                        p.open-times-date= date.datum
+                                        p.open-times-time= date.tid
