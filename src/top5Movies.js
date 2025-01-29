@@ -1,5 +1,9 @@
 import { loadReviews, loadMovies } from './movies.js';
 
+//////////////////
+//THIS CODE KINDA WORKS BUT CAN BE IMPROVED!
+/////////////////
+
 export async function top5Movies() {
   const movies = await loadMovies();
   const moviesWithRating = [];
