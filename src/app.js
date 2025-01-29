@@ -1,20 +1,17 @@
 import express from 'express';
 import createData from './db.js';
-import { newReviews } from './top5Movies.js';
+import { top5Movies } from './top5Movies.js';
 
 export default function initialize(api) {
   const app = express();
   app.set('view engine', 'pug');
 
   app.get('/', async (req, res) => {
-    const movies = await api.loadMovies();
-    const reviews = await newReviews();
-    console.log('------------REVIEWS:', reviews);
-    console.log('------------MOVIES:', movies);
+    const movies = await top5Movies();
+
     res.render('home', {
       data: createData(),
-      movies: movies,
-      reviews: reviews,
+      movies,
     });
   });
 

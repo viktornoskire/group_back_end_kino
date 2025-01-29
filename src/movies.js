@@ -19,8 +19,8 @@ export async function loadMovies() {
   return payload.data.map(easyObject);
 }
 
-export async function loadReviews() {
-  const res = await fetch(apiBase + '/reviews');
+export async function loadReviews(movieId) {
+  const res = await fetch(`${apiBase}/reviews?filters[movie]=${movieId}`);
   const payload = await res.json();
   return payload.data;
 }

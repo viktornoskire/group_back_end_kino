@@ -1,21 +1,36 @@
-import { loadReviews } from './movies.js';
+import { loadReviews, loadMovies } from './movies.js';
 
-export async function newReviews() {
-  const reviews = await loadReviews();
+export async function top5Movies() {
+  const movies = await loadMovies();
+  const moviesWithRating = [];
 
-  //Creates a date object which represents todays date and time.
-  const today = new Date();
-  //Creates a date object, but sets it 30 days back in time.
-  const thirtyDaysAgo = new Date();
-  thirtyDaysAgo.setDate(today.getDate() - 30);
+  for (const movie of movies) {
+    const reviews = await loadReviews(movie.id);
 
-  //Filter out so we only get the reviews that are 30 days old.
-  const recentReviews = reviews.filter((review) => {
-    //Creates a date object from each review createdAt-field, the date the review was created.
-    const reviewDate = new Date(review.attributes.createdAt);
-    //returns the reviewdate which is more or equal to thirty days ago.
-    return reviewDate >= thirtyDaysAgo;
-  });
-  console.log('------------------RECENT REVIEWS (30 days):', recentReviews);
-  return recentReviews;
+    if (reviews.length === 0) continue;
+
+    const validReviews = reviews.filter((r) => r.attributes.rating !== null);
+    if (validReviews.length === 0) continue;
+
+    let totalRating = 0;
+    for (const review of validReviews) {
+      totalRating += review.attributes.rating;
+    }
+    const averageRating = totalRating / validReviews.length;
+
+    moviesWithRating.push({
+      ...movie,
+      reviews: validReviews,
+      averageRating,
+    });
+  }
+  const topMovies = moviesWithRating.sort((a, b) => b.averageRating - a.averageRating).slice(0, 5);
+
+  console.log(
+    '---------TOP 5 MOVIES:',
+    topMovies.map((movie) => ({
+      title: movie.title,
+      averageRating: movie.averageRating,
+    }))
+  );
 }
