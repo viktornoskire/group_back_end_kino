@@ -7,9 +7,12 @@ export default function initialize(api) {
 
   app.get('/', async (req, res) => {
     const movies = await api.loadMovies();
+    const reviews = await api.loadReviews();
+    console.log('Reviews:', reviews);
     res.render('home', {
       data: createData(),
       movies: movies,
+      reviews: reviews,
     });
   });
 
@@ -27,8 +30,8 @@ export default function initialize(api) {
         movie: movie,
       });
     } catch (err) {
-      console.error(err.message); 
-      res.status(404).render("404", {data: createData(),});
+      console.error(err.message);
+      res.status(404).render('404', { data: createData() });
     }
   });
 

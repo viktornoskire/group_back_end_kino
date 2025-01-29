@@ -9,7 +9,7 @@ function easyObject(api) {
   return {
     id: api.id,
     ...api.attributes,
-    intro: md.render(api.attributes.intro || '')
+    intro: md.render(api.attributes.intro || ''),
   };
 }
 
@@ -19,11 +19,17 @@ export async function loadMovies() {
   return payload.data.map(easyObject);
 }
 
+export async function loadReviews() {
+  const res = await fetch(apiBase + '/reviews');
+  const payload = await res.json();
+  return payload.data;
+}
+
 export async function loadMovie(id) {
   const res = await fetch(apiBase + '/movies/' + id);
   const payload = await res.json();
 
-  if(!payload.data) {
+  if (!payload.data) {
     throw new Error(`Movie with ${id} not found`);
   }
 
