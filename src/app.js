@@ -2,6 +2,7 @@ import express from 'express';
 import createData from './db.js';
 import { loadScreenings } from './screeningsFrontpage.js';
 
+import cmsScreening from './movies.js';
 
 export default function initialize(api) {
   const app = express();
@@ -29,7 +30,7 @@ export default function initialize(api) {
         movie: movie,
       });
     } catch (err) {
-      console.error(err.message); 
+      console.error(err.message);
       res.status(404).render("404", {data: createData(),});
     }
   });
@@ -50,6 +51,11 @@ export default function initialize(api) {
       console.error("Fel vid hämtning av visningar:", error);
       res.status(500).json({ error: "Kunde inte ladda visningar" });
     }
+  });
+
+  app.get('/api/screenings/:id', async (req, res) => {
+    const id = req.params.id;
+    res.status(200).end();
   });
 
   app.use('/static', express.static('./static'));
