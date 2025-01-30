@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "sass:watch": "sass --watch ./static/style.scss ./static/style.css",
+    "sass:watch": "sass --watch ./sass/style.scss ./static/style.css",
     "start": "nodemon index.js",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "test-watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch"
