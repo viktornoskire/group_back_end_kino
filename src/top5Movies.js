@@ -13,7 +13,7 @@ export async function top5Movies() {
     //Go through each movie and gets it reviews.
     movies.map(async (movie) => {
       const reviews = await loadReviews(movie.id);
-      // Logga alla reviews för varje film
+      // logging movies, will be removed later.
       console.log(`\nRecensioner för film: ${movie.title}`);
       reviews.forEach((review) => {
         console.log(`- Datum: ${review.attributes.createdAt}, Betyg: ${review.attributes.rating}`);
