@@ -32,7 +32,7 @@ export async function loadMovie(id) {
 
 const cmsScreening = {
   loadScreeningsID: async (id) => {
-    const url = `https://plankton-app-xhkom.ondigitalocean.app/api/screenings?populate=movie&filters[movie]=${id}`;
+    const url = `https://plankton-app-xhkom.ondigitalocean.app/api/screenings?populate=movie?filters[movie]=${id}`;
     const res = await fetch(url);
     const payload = await res.json();
     return payload.data;
