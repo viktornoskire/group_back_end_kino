@@ -2,7 +2,9 @@ extends templates/main
 
 block title
     title= movie.title
-
+        script. 
+            //- const movieID = !{movieID};
+        script(type="module" src="../static/reviews.js")
 block content 
     main.main 
         a(href="/").home-page
@@ -22,5 +24,4 @@ block content
                 textade visningar, och för de med nedsatt syn finns syntolkning 
                 tillgänglig vid utvalda filmer. Vår personal finns alltid på 
                 plats för att hjälpa till och göra besöket så smidigt som möjligt.
-        article.review-article 
-            button.rev-button Next
+        article.review-article
