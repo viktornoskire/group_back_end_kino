@@ -41,7 +41,3 @@ n.addEventListener('click', () => {
 t.addEventListener('click', () => {
   (l.style.display = "none"), t.classList.remove('active');
 });
-
-import { loadReview } from "./reviews.js";
-
-loadReview(); 
