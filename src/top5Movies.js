@@ -18,33 +18,36 @@ export async function top5Movies() {
       reviews.forEach((review) => {
         console.log(`- Datum: ${review.attributes.createdAt}, Betyg: ${review.attributes.rating}`);
       });
+      //returns movies with its reviews
       return {
-        ...movie,
-        reviews,
+        ...movie, //spreads out the movies properties
+        reviews, //adds the reviews.
       };
     })
   );
-
+  // count average rating for each movie
   const moviesWithRating = moviesWithReviews
     .map((movie) => {
+      //filter out not valid reviews, has to have rating > 0 and be withing the date.
       const validReviews = movie.reviews.filter((review) => {
         const reviewDate = new Date(review.attributes.createdAt);
         return review.attributes.rating > 0 && reviewDate >= thirtyDaysAgo;
       });
-
+      // Count average rating if there are valid reviews.
       const averageRating =
         validReviews.length > 0
           ? validReviews.reduce((sum, review) => sum + review.attributes.rating, 0) / validReviews.length
           : null;
-
+      //returns movie with its rating and number of reviews.
       return {
         ...movie,
         averageRating,
         reviewCount: validReviews.length,
       };
     })
-    .filter((movie) => movie.averageRating !== null);
+    .filter((movie) => movie.averageRating !== null); //removes movies that does not have valid rating.
 
+  //Sorts movies and choose the top 5.
   const topMovies = moviesWithRating.sort((a, b) => b.averageRating - a.averageRating).slice(0, 5);
 
   console.log('\n=== SLUTRESULTAT ===');
