@@ -31,7 +31,7 @@ export async function top5Movies() {
       //filter out not valid reviews, has to have rating > 0 and be withing the date.
       const validReviews = movie.reviews.filter((review) => {
         const reviewDate = new Date(review.attributes.createdAt);
-        return review.attributes.rating > 0 && reviewDate >= thirtyDaysAgo;
+        return review.attributes.rating !== null && reviewDate >= thirtyDaysAgo;
       });
       // Count average rating if there are valid reviews.
       const averageRating =
@@ -48,7 +48,14 @@ export async function top5Movies() {
     .filter((movie) => movie.averageRating !== null); //removes movies that does not have valid rating.
 
   //Sorts movies and choose the top 5.
-  const topMovies = moviesWithRating.sort((a, b) => b.averageRating - a.averageRating).slice(0, 5);
+  const topMovies = moviesWithRating
+    .sort((a, b) => {
+      if (b.averageRating !== a.averageRating) {
+        return b.averageRating - a.averageRating;
+      }
+      return b.reviewCount - a.reviewCount;
+    })
+    .slice(0, 5);
 
   console.log('\n=== SLUTRESULTAT ===');
   console.log('Topp 5 filmer (senaste 30 dagarna):');
