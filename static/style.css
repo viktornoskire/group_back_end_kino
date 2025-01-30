@@ -819,6 +819,14 @@ main .info .open-div :hover {
   color: inherit;
 }
 
+.screenings-container {
+  max-width: 1280px;
+  background-color: #1a1a1a;
+  color: #f6f6f6;
+  padding: 0 1rem;
+  margin: 1em auto;
+}
+
 * {
   font-family: "Poppins", sans-serif;
   max-width: 100%;
