@@ -35,3 +35,14 @@ export async function loadMovie(id) {
 
   return easyObject(payload.data);
 }
+
+const cmsScreening = {
+  loadScreeningsID: async (id) => {
+    const url = `https://plankton-app-xhkom.ondigitalocean.app/api/screenings?populate=movie?filters[movie]=${id}`;
+    const res = await fetch(url);
+    const payload = await res.json();
+    return payload.data;
+  },
+};
+
+export default cmsScreening;
