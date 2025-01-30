@@ -48,7 +48,7 @@ export default function initialize(api) {
       const dataReview = await response.json();
 
       res.json({
-        reviews: dataReview.dataReview.map(review => ({
+        reviews: dataReview.data.map(review => ({
           author: review.attributes.author,
           rating: review.attributes.rating,
           comment: review.attributes.comment,
