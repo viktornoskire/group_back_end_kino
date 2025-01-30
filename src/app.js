@@ -1,5 +1,6 @@
 import express from 'express';
 import createData from './db.js';
+import { loadReview } from './movies.js';
 
 export default function initialize(api) {
   const app = express();
@@ -35,25 +36,24 @@ export default function initialize(api) {
 
   app.get('/api/reviews/:id', async (req, res) => {
     const id = req.params.id;
-    const page = req.query.page || 1;
+    // const page = req.query.page || 1;
     const pageSize = 5;
-
-    const api = 'https://plankton-app-xhkom.ondigitalocean.app/api/reviews';
-
     const skip = (page - 1) * pageSize;
 
-    const revURL = `${api}?filters[movie]=${id}&pagination[pageSize]=${pageSize}&pagination[page]=${skip}`;
     try {
-      const response = await fetch(revURL);
-      const dataReview = await response.json();
+      const reviews = await loadReview(id, pageSize, skip);
+      console.log("svar", reviews);
+      if (!reviews) {
+        return res.status(404);
+      }
 
       res.json({
-        reviews: dataReview.data.map(review => ({
+        reviews: reviews.map(review => ({
           author: review.attributes.author,
           rating: review.attributes.rating,
           comment: review.attributes.comment,
         })),
-        pagination: dataReview.meta.pagination
+        pagination: reviews.meta
       });
 
     } catch (err) {
@@ -61,9 +61,6 @@ export default function initialize(api) {
       res.status(404)
     };
   });
-
-
-
 
   app.get('/about', async (req, res) => {
     res.render('about', { data: createData() });

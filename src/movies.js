@@ -23,9 +23,25 @@ export async function loadMovie(id) {
   const res = await fetch(apiBase + '/movies/' + id);
   const payload = await res.json();
 
-  if(!payload.data) {
+  if (!payload.data) {
     throw new Error(`Movie with ${id} not found`);
   }
 
   return easyObject(payload.data);
+}
+
+
+export async function loadReview(id, pageSize, skip) {
+
+  const api = 'https://plankton-app-xhkom.ondigitalocean.app/api/reviews';
+  const revURL = `${api}?filters[movie]=${id}&pagination[pageSize]=${pageSize}&pagination[page]=${skip}`;
+
+  const response = await fetch(revURL);
+  const dataReview = await response.json();
+
+  if (!dataReview) {
+    throw new Error(`Review with ${id} not found`);
+  }
+
+  return dataReview.data;
 }
