@@ -1,5 +1,7 @@
 import express from 'express';
 import createData from './db.js';
+import { loadScreenings } from './screeningsFrontpage.js';
+
 import cmsScreening from './movies.js';
 
 export default function initialize(api) {
@@ -39,6 +41,16 @@ export default function initialize(api) {
 
   app.get('/kids', async (req, res) => {
     res.render('kids', { data: createData() });
+  });
+
+  app.get('/api/screenings', async (req, res) => {
+    try {
+      const screenings = await loadScreenings();
+      res.json(screenings);
+    } catch (error) {
+      console.error("Fel vid hämtning av visningar:", error);
+      res.status(500).json({ error: "Kunde inte ladda visningar" });
+    }
   });
 
   app.get('/api/screenings/:id', async (req, res) => {
