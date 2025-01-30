@@ -6,7 +6,7 @@
   margin-left: auto;
   margin-right: auto;
   grid-template-columns: 25% 25% 15% 35%;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto auto auto;
   
   .home-page {
     color: inherit;
@@ -16,7 +16,7 @@
     font-size: 2.5em;
   }
   .movie-img {
-    grid-row: 3;
+    grid-row: 3 / 5;
     grid-column: 1;
     border-radius: 25px;
     width: 50%;
@@ -59,6 +59,45 @@
     padding: 2em;
     background-color: $background-div-color;
     border-radius: 25px;
-    margin-bottom: 20rem;
+    margin-bottom: 5rem;
+  }
+
+  .review-box {
+    grid-row: 4;
+    grid-column: 4;
+    padding: 2em;
+    background-color: $background-div-color;
+    border-radius: 25px;
+
+    .review-input {
+      background-color: transparent;
+      font-family: 'Poppins', sans-serif;
+      border: 4px solid $red-color;
+      padding: 0 0 3em 0;
+      font-size: 1.2em;
+      margin-bottom: 1em;
+      display: block;
+      width: 100%;
+    }
+    .name-input {
+      margin-bottom: 1em;
+      border: 3px solid $red-color;
+      background-color: transparent;
+    }
+    .review-btn {
+      background-color: $red-color; 
+      border: none; 
+      border-radius: 30px;
+      color: white;
+      font-weight: 700;
+      padding: 1em;
+      padding-left: 3em;
+      padding-right: 3em;
+      margin-left: 2em;
+
+      &:focus {
+        border: none;
+      }
+    }
   }
 }
