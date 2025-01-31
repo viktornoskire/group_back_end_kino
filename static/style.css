@@ -825,18 +825,27 @@ main .info .open-div :hover {
   color: white;
   outline: none;
 }
-.main .review-box .rating-input {
-  display: block;
-}
 .main .review-box .name-input {
+  width: 65%;
   margin-bottom: 1em;
+  margin-left: 1em;
   border: 3px solid #fc263a;
   background-color: transparent;
   font-size: 1.2em;
-  padding: 0.2em 0.2em 0.2em 0.4em;
+  padding: 0.2em 0 0.2em 0.4em;
   color: white;
   border-radius: 10px;
   outline: none;
+}
+.main .review-box .review-rating {
+  border: 3px solid #fc263a;
+  background-color: transparent;
+  padding: 0.2em 0em 0.2em 0.4em;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  width: 30%;
+  font-size: 1.2em;
 }
 .main .review-box .review-btn {
   background-color: #fc263a;
@@ -847,7 +856,6 @@ main .info .open-div :hover {
   padding: 1em;
   padding-left: 3em;
   padding-right: 3em;
-  margin-left: 2em;
 }
 
 .error-div {
