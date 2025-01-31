@@ -43,7 +43,7 @@ export default function initialize(api) {
     const id = req.params.id;
     // const page = req.query.page || 1;
     const pageSize = 5;
-    const skip = (page - 1) * pageSize;
+    // const skip = (page - 1) * pageSize;
 
     try {
       const reviews = await loadReview(id, pageSize, skip);
