@@ -3,8 +3,8 @@ extends templates/main
 
 block title
     title= movie.title
-            const id = !{movie.id};
 block content 
+    - const id = movie.id
     main.main 
         a(href="/").home-page
             h2 Back to the home page
@@ -18,11 +18,16 @@ block content
             h3.accessibility-ti Tillgänglighet
             p.accessibility-tx. 
                 Kino Sandviken är tillgänglig för alla! Våra lokaler har 
-                rullstolsanpassade ingångar, ramper och sittplatser i varje salong.
+                rullstolsanpassade ingångar, ramper och sittplatser i varje salong. 
                 För gäster med nedsatt hörsel erbjuder vi hörslingor och 
                 textade visningar, och för de med nedsatt syn finns syntolkning 
                 tillgänglig vid utvalda filmer. Vår personal finns alltid på 
-                plats för att hjälpa till och göra besöket så smidigt som möjligt.
+                plats för att hjälpa till och göra besöket så smidigt som möjligt. 
+        form.review-box
+            input(type="text", placeholder="Skriv en recension...").review-input
+            input(type="rating", placeholder="Betyg...").review-rating
+            input(type="text", placeholder="Namn...").name-input
+            button(type="submit").review-btn Skicka
         article.review-article Hej!
             script(type="module" src="../static/reviews.js")
 
