@@ -815,18 +815,28 @@ main .info .open-div :hover {
 }
 .main .review-box .review-input {
   background-color: transparent;
-  font-family: "Poppins", sans-serif;
-  border: 4px solid #fc263a;
-  padding: 0 0 3em 0;
+  border: 3px solid #fc263a;
+  padding: 0.4em 0 3em 0.4em;
   font-size: 1.2em;
   margin-bottom: 1em;
   display: block;
   width: 100%;
+  border-radius: 15px;
+  color: white;
+  outline: none;
+}
+.main .review-box .rating-input {
+  display: block;
 }
 .main .review-box .name-input {
   margin-bottom: 1em;
   border: 3px solid #fc263a;
   background-color: transparent;
+  font-size: 1.2em;
+  padding: 0.2em 0.2em 0.2em 0.4em;
+  color: white;
+  border-radius: 10px;
+  outline: none;
 }
 .main .review-box .review-btn {
   background-color: #fc263a;
@@ -838,9 +848,6 @@ main .info .open-div :hover {
   padding-left: 3em;
   padding-right: 3em;
   margin-left: 2em;
-}
-.main .review-box .review-btn:focus {
-  border: none;
 }
 
 .error-div {

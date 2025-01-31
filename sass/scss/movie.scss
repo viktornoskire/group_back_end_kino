@@ -71,21 +71,32 @@
 
     .review-input {
       background-color: transparent;
-      font-family: 'Poppins', sans-serif;
-      border: 4px solid $red-color;
-      padding: 0 0 3em 0;
+      border: 3px solid $red-color;
+      padding: 0.4em 0 3em 0.4em;
       font-size: 1.2em;
       margin-bottom: 1em;
       display: block;
       width: 100%;
+      border-radius: 15px;
+      color: white;
+      outline: none;
     }
+    .rating-input {
+      display: block;
+    }
+
     .name-input {
       margin-bottom: 1em;
       border: 3px solid $red-color;
       background-color: transparent;
+      font-size: 1.2em;
+      padding: 0.2em 0.2em 0.2em 0.4em;
+      color: white;
+      border-radius: 10px;
+      outline: none;
     }
     .review-btn {
-      background-color: $red-color; 
+      background-color: $red-color;
       border: none; 
       border-radius: 30px;
       color: white;
@@ -94,10 +105,6 @@
       padding-left: 3em;
       padding-right: 3em;
       margin-left: 2em;
-
-      &:focus {
-        border: none;
-      }
     }
   }
 }
