@@ -751,7 +751,7 @@ main .info .open-div :hover {
   margin-left: auto;
   margin-right: auto;
   grid-template-columns: 25% 25% 15% 35%;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto auto auto;
 }
 .main .home-page {
   color: inherit;
@@ -761,7 +761,7 @@ main .info .open-div :hover {
   font-size: 2.5em;
 }
 .main .movie-img {
-  grid-row: 3;
+  grid-row: 3/5;
   grid-column: 1;
   border-radius: 25px;
   width: 50%;
@@ -804,7 +804,58 @@ main .info .open-div :hover {
   padding: 2em;
   background-color: #2d2d2d;
   border-radius: 25px;
-  margin-bottom: 20rem;
+  margin-bottom: 5rem;
+}
+.main .review-box {
+  grid-row: 4;
+  grid-column: 4;
+  padding: 2em;
+  background-color: #2d2d2d;
+  border-radius: 25px;
+}
+.main .review-box .review-input {
+  background-color: transparent;
+  border: 3px solid #fc263a;
+  padding: 0.4em 0 3em 0.4em;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  display: block;
+  width: 100%;
+  border-radius: 15px;
+  color: white;
+  outline: none;
+}
+.main .review-box .name-input {
+  width: 65%;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  border: 3px solid #fc263a;
+  background-color: transparent;
+  font-size: 1.2em;
+  padding: 0.2em 0 0.2em 0.4em;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+}
+.main .review-box .review-rating {
+  border: 3px solid #fc263a;
+  background-color: transparent;
+  padding: 0.2em 0em 0.2em 0.4em;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  width: 30%;
+  font-size: 1.2em;
+}
+.main .review-box .review-btn {
+  background-color: #fc263a;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 700;
+  padding: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
 }
 
 .error-div {
