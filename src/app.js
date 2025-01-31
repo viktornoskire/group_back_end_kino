@@ -18,7 +18,13 @@ export default function initialize(api) {
   app.get('/api/top-movies', async (req, res) => {
     try {
       const movies = await top5Movies();
-      res.json(movies);
+      res.json({
+        movies: movies.map((movie) => ({
+          id: movie.id,
+          title: movie.title,
+          image: movie.image,
+        })),
+      });
     } catch (error) {
       console.error('Could not get top 5 movies', error);
       res.status(500).json({ error: 'Could not load top 5 movies at this time.' });
