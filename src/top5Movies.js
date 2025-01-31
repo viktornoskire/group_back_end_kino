@@ -20,7 +20,7 @@ export async function top5Movies() {
           const reviews = await loadReviews(movie.id);
 
           //This log is just here right now during development.
-          console.log(`\nRecensioner för film: ${movie.title}`);
+          console.log(`\nRecensioner för film: ${movie.title} (ID: ${movie.id})`);
           reviews.forEach((review) => {
             console.log(`- Datum: ${review.attributes.createdAt}, Betyg: ${review.attributes.rating}`);
           });
