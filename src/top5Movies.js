@@ -82,20 +82,21 @@ export async function top5Movies() {
 //Function to filter away reviews that are older than 30 days, and does not have a rating.
 function isValidReview(review, thirtyDaysAgo) {
   const reviewDate = new Date(review.attributes.createdAt);
-  return review.attributes.rating !== null && reviewDate >= thirtyDaysAgo;
+  return review.attributes.rating !== null && reviewDate >= thirtyDaysAgo; // return the value if the rating is not null & the review date in newer then 30 days ago.
 }
 
 // Function to calculate the average rating for an array of reviews.
 function calculateAverageRating(reviews) {
   if (reviews.length === 0) return null;
-  const sum = reviews.reduce((total, review) => total + review.attributes.rating, 0);
-  return sum / reviews.length;
+  const sum = reviews.reduce((total, review) => total + review.attributes.rating, 0); // Goes through all reviews in the array and adds their total value, starting from 0
+  return sum / reviews.length; //returns the average value by deviding the sum with the length of the array.
 }
 
 // Function to sort movies first based of rating, if rating is equal, than based on number of reviews.
 function sortMovies(a, b) {
+  //if the average rating is not equal to to the other, then we return the one with the highest rating.
   if (b.averageRating !== a.averageRating) {
     return b.averageRating - a.averageRating;
   }
-  return b.reviewCount - a.reviewCount;
+  return b.reviewCount - a.reviewCount; // If they have the same rating, we base the "rating" from number of reviews.
 }
