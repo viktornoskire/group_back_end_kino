@@ -10,12 +10,19 @@ export default function initialize(api) {
   app.set('view engine', 'pug');
 
   app.get('/', async (req, res) => {
-    const movies = await top5Movies();
-
     res.render('home', {
       data: createData(),
-      movies,
     });
+  });
+
+  app.get('/api/top-movies', async (req, res) => {
+    try {
+      const movies = await top5Movies();
+      res.json(movies);
+    } catch (error) {
+      console.error('Could not get top 5 movies', error);
+      res.status(500).json({ error: 'Could not load top 5 movies at this time.' });
+    }
   });
 
   app.get('/movies/:id', async (req, res) => {
