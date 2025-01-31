@@ -12,7 +12,7 @@ export async function top5Movies() {
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-    //Using Promise.all to get all reviews paralell.
+    //Using Promise.all to get all reviews at the same time.
     const moviesWithReviews = await Promise.all(
       // Goes through every movie and gets its review.
       movies.map(async (movie) => {
