@@ -86,8 +86,19 @@ export default function initialize(api) {
   });
 
   app.get('/api/screenings/:id', async (req, res) => {
-    const id = req.params.id;
-    res.status(200).end();
+    try {
+      const screenings = await cmsScreening.loadScreeningsID(req, res);
+
+      if (!screenings) {
+        throw new Error('Array does not contain any screenings.');
+      }
+
+      res.json(screenings);
+
+    } catch (e) {
+      console.error(`Problems with fetching the screenings, ${e}`);
+      res.status(500).json({ message: 'Could not fetch any screenings' });
+    }
   });
 
   app.use('/static', express.static('./static'));
