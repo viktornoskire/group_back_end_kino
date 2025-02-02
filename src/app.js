@@ -44,11 +44,11 @@ export default function initialize(api) {
     const id = req.params.id;
     const page = parseInt(req.query.page) || 1;
     const pageSize = 5;
-    // const skip = (page - 1) * pageSize;
+
 
     try {
       const dataReview = await loadReview(id, pageSize, page);
-      //console.log("svar", dataReview);
+      
       if (!dataReview || !dataReview.data) {
         return res.status(404).json({ error: "Recensioner hittades inte" });
     }

@@ -1,15 +1,22 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-    async function fetchReviews (page) {
-      const url = (`/api/reviews/${movieId}?page=${page}`);
-      const res = await fetch(url)
-      const data = await res.json();
+  async function fetchReviews (page) {
+    const url = (`/api/reviews/${movieId}?page=${page}`);
+    const res = await fetch(url)
+    const data = await res.json();
    
-  const revUl = document.querySelector('.review-ul');
-  
-  revUl.innerHTML = "";
+    if (!data.pagination || data.pagination.page === "undefined" || data.pagination.pageCount === "undefined") {
+      prevButton.disabled = true;
+      nextButton.disabled = true;
+    } else {
+        prevButton.disabled = data.pagination.page === 1;
+        nextButton.disabled = data.pagination.page >= data.pagination.pageCount;
+    }
 
-  data.reviews.forEach(review => {
+    const revUl = document.querySelector('.review-ul');
+    revUl.innerHTML = "";
+
+    data.reviews.forEach(review => {
       const author = review.author;
       const rating = review.rating;
       const comment = review.comment;
@@ -22,35 +29,27 @@ document.addEventListener('DOMContentLoaded', function () {
       <p>${comment}</p>`;
 
       revUl.appendChild(revCom);
+    });
+  }
+
+  let currentPage = 1;
+  const prevButton = document.querySelector('.review-prev');
+  prevButton.addEventListener("click", () =>{
+    if (currentPage > 1) {
+      currentPage--;
+      fetchReviews(currentPage)
+    }
   });
 
-  // prevButton.disable = data.pagignation.page === 1;
-  // nextButton.disable = data.pagignation.page >= data.pagignation.pageCount;
-  return data;
-}
+  const nextButton = document.querySelector('.review-next');
+  nextButton.addEventListener('click', () =>{
+    if(!nextButton.disabled){
+      currentPage++;
+      fetchReviews(currentPage);
+    }
+  });
 
-const data = fetchReviews(); 
-console.log(data); 
-
-let currentPage = 1;
-const prevButton = document.querySelector('.review-prev');
-prevButton.addEventListener("click", () =>{
-if (currentPage > 1) {
-  currentPage--;
-  fetchReviews(currentPage)
-}
-});
-
-const nextButton = document.querySelector('.review-next');
-nextButton.addEventListener('click', () =>{
-  if((currentPage * 5) < 15){
-    currentPage++;
   fetchReviews(currentPage);
-  }
-  
-});
-
-fetchReviews(currentPage);
 });
 
 
