@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, jest } from '@jest/globals';
-import { calculateAverageRating, isValidReview } from './top5Movies.js';
+import { calculateAverageRating, isValidReview, sortMovies } from './top5Movies.js';
 
 ////////////////////////////////
 //Test for the isValidReview-function in top5Movies.js
@@ -121,5 +121,42 @@ describe('calculateAverageRating()', () => {
       },
     ];
     expect(calculateAverageRating(reviews)).toBe(3);
+  });
+});
+
+////////////////////////////////
+//Test for the sortMovies function in top5Movies.js
+///////////////////////////////
+
+describe('SortMovies()', () => {
+  ///////
+  //Test 1 for sortMovies function
+  //////
+  it('sorts movies based on the average rating, where highest rating gets sorted first.', () => {
+    const movie1 = {
+      averageRating: 4,
+      reviewCount: 2,
+    };
+    const movie2 = {
+      averageRating: 5,
+      reviewCount: 1,
+    };
+
+    expect(sortMovies(movie1, movie2)).toBeGreaterThan(0); //movie 2 should come before movie 1
+    expect(sortMovies(movie2, movie1)).toBeLessThan(0); // And here movie 2 should come before movie 1
+  });
+
+  it('Sorts a movie based on review count. If a movie has the same rating but higher reviews, it gets sorted first.', () => {
+    const movie1 = {
+      averageRating: 4,
+      reviewCount: 2,
+    };
+    const movie2 = {
+      averageRating: 4,
+      reviewCount: 5,
+    };
+
+    expect(sortMovies(movie1, movie2)).toBeGreaterThan(0);
+    expect(sortMovies(movie2, movie1)).toBeLessThan(0);
   });
 });
