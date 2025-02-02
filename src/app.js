@@ -4,6 +4,7 @@ import { loadScreenings } from './screeningsFrontpage.js';
 import { top5Movies } from './top5Movies.js';
 import { loadReview } from './movies.js';
 import cmsScreening from './movies.js';
+import cmsAdapter from './cmsAdapterTop5Movies.js';
 
 export default function initialize(api) {
   const app = express();
@@ -17,7 +18,7 @@ export default function initialize(api) {
 
   app.get('/api/top-movies', async (req, res) => {
     try {
-      const movies = await top5Movies();
+      const movies = await top5Movies(cmsAdapter);
       res.json({
         movies: movies.map((movie) => ({
           id: movie.id,

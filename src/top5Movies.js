@@ -4,7 +4,7 @@ import { loadReviews, loadMovies } from './movies.js';
 //Main Function that returns the 5 most rated movies based on their reviews from the last 30 days.
 ///////////////////
 
-export async function top5Movies() {
+export async function top5Movies(cmsAdapter) {
   try {
     const movies = await loadMovies();
 
