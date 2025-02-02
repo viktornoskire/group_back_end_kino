@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, jest } from '@jest/globals';
-import { isValidReview } from './top5Movies.js';
+import { calculateAverageRating, isValidReview } from './top5Movies.js';
 
 ////////////////////////////////
 //Test for the isValidReview-function in top5Movies.js
@@ -71,5 +71,55 @@ describe('isValidReview()', () => {
       },
     };
     expect(isValidReview(review, thirtyDaysAgo)).toBe(false);
+  });
+});
+
+////////////////////////////////
+//Test for the calculateAverageRating function in top5Movies.js
+///////////////////////////////
+
+describe('calculateAverageRating()', () => {
+  ///////
+  //Test 1 for calculateAverageRating function
+  //////
+  it('Returns null if reviews array is empty', () => {
+    const reviews = [];
+    expect(calculateAverageRating(reviews)).toBe(null);
+  });
+  ///////
+  //Test 2 for calculateAverageRating function
+  //////
+  it('Returns correct rating when only one review exists', () => {
+    const reviews = [
+      {
+        attributes: {
+          rating: 4,
+        },
+      },
+    ];
+    expect(calculateAverageRating(reviews)).toBe(4);
+  });
+  ///////
+  //Test 3 for calculateAverageRating function
+  //////
+  it('Calculates correct average for multiple reviews', () => {
+    const reviews = [
+      {
+        attributes: {
+          rating: 4,
+        },
+      },
+      {
+        attributes: {
+          rating: 2,
+        },
+      },
+      {
+        attributes: {
+          rating: 3,
+        },
+      },
+    ];
+    expect(calculateAverageRating(reviews)).toBe(3);
   });
 });
