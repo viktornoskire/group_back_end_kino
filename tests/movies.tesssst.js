@@ -36,7 +36,7 @@ const api = {
     ];
 
     const movie = movies.find((m) => m.id === parseInt(id));
-    return movie || null
+    return movie || null;
   },
   loadMovies: async () => [
     {
@@ -73,10 +73,7 @@ const api = {
 test('Are the correct movies displayed on main page?', async () => {
   const app = initialize(api);
 
-  const res = await request(app)
-    .get('/')
-    .expect(200)
-    .expect('Content-Type', /html/);
+  const res = await request(app).get('/').expect(200).expect('Content-Type', /html/);
 
   expect(res.text).toMatch('Encanto');
   expect(res.text).toMatch('Forrest Gump');
@@ -87,10 +84,7 @@ test('Are the correct movies displayed on main page?', async () => {
 test('Is Encanto displayed on single movie page?', async () => {
   const app = initialize(api);
 
-  const res = await request(app)
-    .get('/movies/2')
-    .expect(200)
-    .expect('Content-Type', /html/);
+  const res = await request(app).get('/movies/2').expect(200).expect('Content-Type', /html/);
 
   expect(res.text).toMatch('Encanto');
 });
@@ -98,10 +92,7 @@ test('Is Encanto displayed on single movie page?', async () => {
 test('Is Forrest Gump displayed on single movie page?', async () => {
   const app = initialize(api);
 
-  const res = await request(app)
-    .get('/movies/6')
-    .expect(200)
-    .expect('Content-Type', /html/);
+  const res = await request(app).get('/movies/6').expect(200).expect('Content-Type', /html/);
 
   expect(res.text).toMatch('Forrest Gump');
 });
@@ -109,10 +100,7 @@ test('Is Forrest Gump displayed on single movie page?', async () => {
 test('Test the non-existing "localhost:5080/movies/11" page', async () => {
   const app = initialize(api);
 
-  const res = await request(app)
-    .get('/movies/11')
-    .expect(404)
-    .expect('Content-Type', /html/);
+  const res = await request(app).get('/movies/11').expect(404).expect('Content-Type', /html/);
 
   expect(res.text).toMatch('Not Found');
 });
@@ -120,10 +108,7 @@ test('Test the non-existing "localhost:5080/movies/11" page', async () => {
 test('Test the non-existing "localhost:5080/movies/0" page', async () => {
   const app = initialize(api);
 
-  const res = await request(app)
-    .get('/movies/0')
-    .expect(404)
-    .expect('Content-Type', /html/);
+  const res = await request(app).get('/movies/0').expect(404).expect('Content-Type', /html/);
 
   expect(res.text).toMatch('Not Found');
 });
