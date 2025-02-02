@@ -16,7 +16,6 @@ export async function top5Movies(cmsAdapter) {
       movies.map(async (movie) => {
         try {
           const reviews = await cmsAdapter.loadReviews(movie.id);
-
           //This log is just here right now during development.
           console.log(`\nRecensioner för film: ${movie.title} (ID: ${movie.id})`);
           reviews.forEach((review) => {
