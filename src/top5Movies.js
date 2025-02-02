@@ -1,12 +1,10 @@
-import { loadReviews, loadMovies } from './movies.js';
-
 ////////////////////
 //Main Function that returns the 5 most rated movies based on their reviews from the last 30 days.
 ///////////////////
 
 export async function top5Movies(cmsAdapter) {
   try {
-    const movies = await loadMovies();
+    const movies = await cmsAdapter.loadMovies();
 
     //Creates a date thats always 30 days ago (back in time)
     const thirtyDaysAgo = new Date();
@@ -17,7 +15,7 @@ export async function top5Movies(cmsAdapter) {
       // Goes through every movie and gets its review.
       movies.map(async (movie) => {
         try {
-          const reviews = await loadReviews(movie.id);
+          const reviews = await cmsAdapter.loadReviews(movie.id);
 
           //This log is just here right now during development.
           console.log(`\nRecensioner för film: ${movie.title} (ID: ${movie.id})`);
