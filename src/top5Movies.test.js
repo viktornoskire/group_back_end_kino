@@ -167,6 +167,20 @@ describe('SortMovies()', () => {
 ///////////////////////////////
 
 describe('top5Movies()', () => {
+  //Help function to create a review-object which can be overridden. (used in test 2)
+  function mockReview(overrides) {
+    return {
+      id: 1,
+      attributes: {
+        rating: 5,
+        createdAt: '2025-01-20T13:37:00.000Z',
+        ...overrides,
+      },
+    };
+  }
+  ///////
+  //Test 1 for top5Movies function
+  //////
   it('Returns empty array when no movies exist', async () => {
     //Mocking the data here through dependency injection by using mocked data below.
     const cmsAdapter = {
@@ -177,5 +191,31 @@ describe('top5Movies()', () => {
     const movies = await top5Movies(cmsAdapter);
     expect(movies).toHaveLength(0);
   });
-  it('Returns top 5 movies sorted by rating and review count');
+  ///////
+  //Test 2 for top5Movies function
+  //////
+  it('Returns top 5 movies sorted by rating and review count', async () => {
+    const cmsAdapter = {
+      loadMovies: async () => [
+        { id: 1, title: 'Pulp Fiction' },
+        { id: 2, title: 'Training Day' },
+        { id: 3, title: 'Encanto' },
+      ],
+      //Mocking the reviews for each movie
+      loadReviews: async (movieId) => {
+        const reviews = {
+          1: [mockReview({ rating: 5 }), mockReview({ rating: 5 })],
+          2: [mockReview({ rating: 5 }), mockReview({ rating: 5 }), mockReview({ rating: 5 })],
+          3: [mockReview({ rating: 4 })],
+        };
+        return reviews[movieId]; //Returns reviews for specifik movieId.
+      },
+    };
+    //Runs the function with our mocked data
+    const movies = await top5Movies(cmsAdapter);
+    expect(movies).toHaveLength(3); //Should have 3 movies
+    expect(movies[0].id).toBe(2); //movie 2 should be first due to rating 5 & most reviews.
+    expect(movies[1].id).toBe(1); // Movie 1 second, rating 5 but less reviews.
+    expect(movies[2].id).toBe(3); // movie 3 last, rating 4.
+  });
 });
