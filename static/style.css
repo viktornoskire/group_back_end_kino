@@ -800,16 +800,8 @@ main .info .open-div :hover {
   font-size: 1.1em;
   margin-left: 1em;
 }
-.main .accessibility {
-  grid-row: 3;
-  grid-column: 4;
-  padding: 2em;
-  background-color: #2d2d2d;
-  border-radius: 25px;
-  margin-bottom: 5rem;
-}
 .main .review-box {
-  grid-row: 4;
+  grid-row: 3;
   grid-column: 4;
   padding: 2em;
   background-color: #2d2d2d;

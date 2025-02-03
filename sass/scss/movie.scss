@@ -53,16 +53,8 @@
       margin-left: 1em;
     }
   }
-  .accessibility {
-    grid-row: 3;
-    grid-column: 4;
-    padding: 2em;
-    background-color: $background-div-color;
-    border-radius: 25px;
-    margin-bottom: 5rem;
-  }
   .review-box {
-    grid-row: 4;
+    grid-row: 3;
     grid-column: 4;
     padding: 2em;
     background-color: $background-div-color;

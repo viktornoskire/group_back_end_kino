@@ -41,3 +41,30 @@ n.addEventListener('click', () => {
 t.addEventListener('click', () => {
   (l.style.display = "none"), t.classList.remove('active');
 });
+
+// __ Access review input __ 
+
+if (document.querySelector('.movie-title')) {
+  const reviewForm = document.querySelector('.review-box');
+
+  reviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const comment = document.querySelector('.review-input');
+    const rating = document.querySelector('.rating-input');
+    const name = document.querySelector('.name-input');
+
+    const movie = window.location.pathname.slice(-1);
+    if (comment.value == "" || name.value == "") {
+      console.log("All fields must be filled!")
+    } else {
+      console.log('Movie ID: ', movie);
+      console.log('Comment: ', comment.value);
+      console.log('Rating: ', rating.value);
+      console.log('Name: ', name.value);
+    }
+
+    comment.value = "";
+    rating.value = 0;
+    name.value = "";
+  });
+};
