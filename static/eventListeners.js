@@ -33,11 +33,51 @@ const r = document.querySelector('.hamburger-btn'),
   l = document.querySelector('.menu-overlay'),
   t = document.querySelector('.overlay-blur');
 r.addEventListener('click', () => {
-  l.style.display = "block", t.classList.add('active');
+  (l.style.display = 'block'), t.classList.add('active');
 });
 n.addEventListener('click', () => {
-  l.style.display = "none", t.classList.remove('active');
+  (l.style.display = 'none'), t.classList.remove('active');
 });
 t.addEventListener('click', () => {
-  (l.style.display = "none"), t.classList.remove('active');
+  (l.style.display = 'none'), t.classList.remove('active');
 });
+
+if (document.querySelector('.movie-title')) {
+  const reviewForm = document.querySelector('.review-box');
+  const API_URL = 'https://plankton-app-xhkom.ondigitalocean.app/api/reviews';
+
+  reviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const comment = document.querySelector('.review-input');
+    const rating = document.querySelector('.rating-input');
+    const name = document.querySelector('.name-input');
+
+    const movie = window.location.pathname.slice(-1);
+    console.log(movie);
+
+    if (comment.value == '' || name.value == '') {
+      console.log('No comment or name input');
+    } else {
+      fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify ({
+          data: {
+            comment: comment.value,
+            rating: rating.value,
+            author: name.value,
+            movie: movie,
+          },
+        }),
+      })
+      .then(response => response.json())
+      .then(data => console.log("Success:", data))
+      .catch(error => console.log("Error:", error))
+    }
+    comment.value = "";
+    rating.value = 0;
+    name.value = "";
+  });
+};
