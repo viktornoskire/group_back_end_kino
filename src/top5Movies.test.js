@@ -214,8 +214,38 @@ describe('top5Movies()', () => {
     //Runs the function with our mocked data
     const movies = await top5Movies(cmsAdapter);
     expect(movies).toHaveLength(3); //Should have 3 movies
-    expect(movies[0].id).toBe(2); //movie 2 should be first due to rating 5 & most reviews.
-    expect(movies[1].id).toBe(1); // Movie 1 second, rating 5 but less reviews.
-    expect(movies[2].id).toBe(3); // movie 3 last, rating 4.
+    expect(movies[0].id).toBe(2); //Training Day should be first due to rating 5 & most reviews.
+    expect(movies[1].id).toBe(1); //Pulp Fiction second, rating 5 but less reviews.
+    expect(movies[2].id).toBe(3); //Encanto last, rating 4.
+  });
+
+  it('Returns only movies with valid reviews from last 30 days', async () => {
+    jest.setSystemTime(new Date(2025, 1, 3));
+
+    const cmsAdapter = {
+      loadMovies: async () => [
+        { id: 1, title: 'Pulp Fiction' },
+        { id: 2, title: 'Training Day' },
+        { id: 3, title: 'Encanto' },
+        { id: 4, title: 'Min granne Totoro' },
+        { id: 5, title: 'The Shawshank Redemption' },
+      ],
+      loadReviews: async (movieId) => {
+        const reviews = {
+          1: [mockReview({ rating: 5 }), mockReview({ rating: 5 })],
+          2: [mockReview({ rating: 3, createdAt: '2024-12-20T13:37:00.000Z' })],
+          3: [mockReview({ rating: null })],
+          4: [mockReview({ rating: 5 }), mockReview({ rating: 4 })],
+          5: [mockReview({ rating: 5 }), mockReview({ rating: 5 }), mockReview({ rating: 5 })],
+        };
+        return reviews[movieId];
+      },
+    };
+
+    const movies = await top5Movies(cmsAdapter);
+    expect(movies).toHaveLength(3);
+    expect(movies[0].id).toBe(5);
+    expect(movies[1].id).toBe(1);
+    expect(movies[2].id).toBe(4);
   });
 });
