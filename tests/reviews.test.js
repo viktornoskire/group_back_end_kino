@@ -26,7 +26,7 @@ test('Should display page 1', () => {
   });
 });
 
-test('Should not work', () => {
+test('Should display page 2', () => {
   document.addEventListener('DOMContentLoaded', function () {
     fetchReviews(2);
     const review = new loadReviews(fakeReview);
@@ -36,7 +36,7 @@ test('Should not work', () => {
   });
 });
 
-test('should be disabel', () => {
+test('Next button should be disabel', () => {
   document.addEventListener('DOMContentLoaded', function () {
     fetchReviews(6);
     const review = new loadReviews(fakeReview);
