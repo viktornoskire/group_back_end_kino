@@ -6,7 +6,7 @@ export async function fetchScreenings() {
   const res = await fetch(`${apiBase}/screenings?populate=movie`);
   const payload = await res.json();
 
-  return payload.data.map(screening => ({
+  return payload.data.map((screening) => ({
     id: screening.id,
     movie: screening.attributes.movie.data.attributes.title,
     start_time: new Date(screening.attributes.start_time),
@@ -14,22 +14,22 @@ export async function fetchScreenings() {
   }));
 }
 
-export function filterScreeningsByDate(screenings) {
-  const currentDate = new Date();
+export function filterScreeningsByDate(screenings, today) {
+  const currentDate = new Date(today);
   currentDate.setHours(0, 0, 0, 0);
 
-  const dateInFiveDays = new Date();
+  const dateInFiveDays = new Date(currentDate);
   dateInFiveDays.setDate(currentDate.getDate() + 5);
-  dateInFiveDays.setHours(0, 0, 0, 0);
 
   return screenings.filter(screening => {
-    if (screening.start_time >= currentDate && screening.start_time < dateInFiveDays) {
+    if (screening.start_time >= currentDate && screening.start_time <= dateInFiveDays) {
       return true;
     } else {
       return false;
     }
   });
 }
+
 
 export function nextTenScreenings(filteredScreenings) {
   const sortedScreenings = filteredScreenings.sort((a, b) => a.start_time - b.start_time);
