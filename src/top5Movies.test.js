@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, jest } from '@jest/globals';
-import { calculateAverageRating, isValidReview, sortMovies } from './top5Movies.js';
+import { calculateAverageRating, isValidReview, sortMovies, top5Movies } from './top5Movies.js';
+import { loadMovies, loadReview, loadReviews } from './movies.js';
 
 ////////////////////////////////
 //Test for the isValidReview-function in top5Movies.js
@@ -159,4 +160,22 @@ describe('SortMovies()', () => {
     expect(sortMovies(movie1, movie2)).toBeGreaterThan(0);
     expect(sortMovies(movie2, movie1)).toBeLessThan(0);
   });
+});
+
+////////////////////////////////
+//Test for the main function top5Movies() in top5Movies.js
+///////////////////////////////
+
+describe('top5Movies()', () => {
+  it('Returns empty array when no movies exist', async () => {
+    //Mocking the data here through dependency injection by using mocked data below.
+    const cmsAdapter = {
+      loadMovies: async () => [],
+      loadReviews: async () => [],
+    };
+
+    const movies = await top5Movies(cmsAdapter);
+    expect(movies).toHaveLength(0);
+  });
+  it('Returns top 5 movies sorted by rating and review count');
 });
