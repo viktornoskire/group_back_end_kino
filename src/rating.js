@@ -1,6 +1,6 @@
 import { loadReviews, getImdbRating } from './movies.js';
 
-export async function getMovieRating(movieId) {
+export async function getMovieRating(movieId, movieTitle) {
   try {
     const reviews = await loadReviews(movieId);
 
