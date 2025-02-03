@@ -815,6 +815,10 @@ main .info .open-div :hover {
   background-color: #2d2d2d;
   border-radius: 25px;
 }
+.main .review-box .review-title {
+  margin: 0 0 1em 0;
+  font-size: 1.5em;
+}
 .main .review-box .review-input {
   background-color: transparent;
   border: 3px solid #fc263a;

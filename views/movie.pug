@@ -24,8 +24,8 @@ block content
                 tillgänglig vid utvalda filmer. Vår personal finns alltid på 
                 plats för att hjälpa till och göra besöket så smidigt som möjligt. 
         form.review-box
-            h3(style="margin: 0 0 1em 0; font-size: 1.5em;") Skapa recension
-            textarea(type="text", placeholder="Skriv en recension...").review-input
+            h3.review-title Skapa recension
+            input(type="text", placeholder="Skriv en recension...").review-input
             label(for="rating").rating-label Betyg 
             select.rating-input(name="rating") 
                 option(value="0").select-option 0
@@ -37,10 +37,7 @@ block content
             input(type="text", placeholder="Namn...").name-input
             button(type="submit").review-btn Skicka
         article.review-article Hej!
-        section.screeningsID-container 
-            h3.screeningsID-title Kommande visningar av #{movie.title}
-            ul.screeningsID-list
-        script(type="module" src="../static/reviews.js")
+            script(type="module" src="../static/reviews.js")
             
 
     
