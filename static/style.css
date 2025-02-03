@@ -872,6 +872,50 @@ main .info .open-div :hover {
   color: inherit;
 }
 
+.review-article .review-header {
+  font-size: 2rem;
+  padding-left: 1rem;
+}
+.review-article .review-div .review-ul {
+  display: flex;
+  gap: 2rem;
+  list-style-type: none;
+}
+.review-article .review-div .review-ul .review-li {
+  max-width: 10rem;
+  font-size: 1.25rem;
+  border-right: solid #f6f6f6;
+  padding-right: 1rem;
+}
+.review-article .review-prev {
+  background-color: #fc263a;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 700;
+  padding: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
+  margin-left: 1rem;
+}
+.review-article .review-prev:disabled {
+  background-color: #a8a8a8;
+}
+.review-article .review-next {
+  background-color: #fc263a;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 700;
+  padding: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
+  margin-left: 1rem;
+}
+.review-article .review-next:disabled {
+  background-color: #a8a8a8;
+}
+
 * {
   font-family: "Poppins", sans-serif;
   max-width: 100%;
@@ -888,7 +932,8 @@ body {
   max-width: 1500px;
   margin: auto;
 }
-body .cinema-title, body .cinema-open {
+body .cinema-title,
+body .cinema-open {
   margin-left: 1.2rem;
 }
 body .open-div {
