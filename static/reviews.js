@@ -33,10 +33,10 @@ export default class loadReviews {
 
     const prevButton = elem.querySelector('.review-prev');
     prevButton.addEventListener("click", () => {
-      console.log("prev", currentPage);
       if (currentPage > 1) {
         currentPage--;
         fetchReviews(currentPage)
+        nextButton.disabled = false;
       } else {
         prevButton.disabled = true;
       }
@@ -44,10 +44,10 @@ export default class loadReviews {
 
     const nextButton = elem.querySelector('.review-next');
     nextButton.addEventListener('click', () => {
-      console.log("next", currentPage);
       if ((currentPage * 5) < this.reviews.pagination.total) {
         currentPage++;
         fetchReviews(currentPage);
+        prevButton.disabled = false;
       } else {
         nextButton.disabled = true;
       }
