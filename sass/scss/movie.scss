@@ -7,7 +7,7 @@
   margin-right: auto;
   grid-template-columns: 25% 25% 15% 35%;
   grid-template-rows: auto auto auto auto;
-  
+
   .home-page {
     color: inherit;
   }
@@ -61,14 +61,12 @@
     border-radius: 25px;
     margin-bottom: 5rem;
   }
-
   .review-box {
     grid-row: 4;
     grid-column: 4;
     padding: 2em;
     background-color: $background-div-color;
     border-radius: 25px;
-
     .review-input {
       background-color: transparent;
       border: 3px solid $red-color;
@@ -81,7 +79,6 @@
       color: white;
       outline: none;
     }
-
     .name-input {
       width: 50%;
       margin-bottom: 1em;
@@ -117,7 +114,7 @@
     }
     .review-btn {
       background-color: $red-color;
-      border: none; 
+      border: none;
       border-radius: 30px;
       color: white;
       font-weight: 700;
