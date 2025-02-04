@@ -870,6 +870,15 @@ main .info .open-div :hover {
   padding-left: 3em;
   padding-right: 3em;
 }
+.main .review-box .error-message {
+  display: inline;
+  margin-left: 1em;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #fc263a;
+  font-style: italic;
+  display: none;
+}
 
 .error-div {
   text-align: center;

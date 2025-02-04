@@ -48,22 +48,34 @@ if (document.querySelector('.movie-title')) {
 
   reviewForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const comment = document.querySelector('.review-input');
-    const rating = document.querySelector('.rating-input');
-    const name = document.querySelector('.name-input');
+
+    const comment = reviewForm.querySelector('.review-input');
+    const rating = reviewForm.querySelector('.rating-input');
+    const name = reviewForm.querySelector('.name-input');
+    const error = reviewForm.querySelector('.error-message');
+
+    error.style.display = 'none';
 
     const movie = window.location.pathname.slice(-1);
     console.log(movie);
 
     if (comment.value == '' || name.value == '') {
-      console.log('No comment or name input');
+      console.log('Movie ID: ', movie);
+      console.log('Comment: ', comment.value ? comment.value : "No comment inserted");
+      console.log('Rating: ', rating.value);
+      console.log('Name: ', name.value ? name.value : 'No name inserted');
+      error.style.display = 'inline';
     } else {
+      console.log('Movie ID: ', movie);
+      console.log('Comment: ', comment.value);
+      console.log('Rating: ', rating.value);
+      console.log('Name: ', name.value);
       fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify ({
+        body: JSON.stringify({
           data: {
             comment: comment.value,
             rating: rating.value,
@@ -72,12 +84,12 @@ if (document.querySelector('.movie-title')) {
           },
         }),
       })
-      .then(response => response.json())
-      .then(data => console.log("Success:", data))
-      .catch(error => console.log("Error:", error))
+        .then((response) => response.json())
+        .then((data) => console.log('Success:', data))
+        .catch((error) => console.log('Error:', error));
     }
-    comment.value = "";
+    comment.value = '';
     rating.value = 0;
-    name.value = "";
+    name.value = '';
   });
-};
+}
