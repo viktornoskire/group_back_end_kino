@@ -1,10 +1,52 @@
-import loadReviews from "./reviews.js";
+import getReviews from "./reviews.js";
 
-export default async function fetchReviews(page) {
-  const url = (`/api/reviews/${movieId}?page=${page}`);
-  const res = await fetch(url)
-  const data = await res.json();
+export default class loadReviews {
+  constructor(reviews) {
+    this.reviews = reviews;
+  }
 
-  const dataReviews = new loadReviews(data);
-  dataReviews.render(document);
+  render(elem) {
+    const revUl = elem.querySelector('.review-ul');
+
+    revUl.innerHTML = "";
+
+    this.reviews.reviews.forEach(review => {
+      const author = review.author;
+      const rating = review.rating;
+      const comment = review.comment;
+
+      const revCom = elem.createElement('li');
+      revCom.classList.add('review-li')
+      revCom.innerHTML = `
+    <p><strong>${author}</strong><p>
+    <p>Betyg - ${rating}</p>
+    <p>${comment}</p>`;
+
+      revUl.appendChild(revCom);
+    });
+
+    let currentPage = this.reviews.pagination.page;
+
+    const prevButton = elem.querySelector('.review-prev');
+    prevButton.addEventListener("click", () => {
+      if (currentPage > 1) {
+        currentPage--;
+        getReviews(currentPage);
+        nextButton.disabled = false;
+      } else {
+        prevButton.disabled = true;
+      }
+    });
+
+    const nextButton = elem.querySelector('.review-next');
+    nextButton.addEventListener('click', () => {
+      if ((currentPage * 5) < this.reviews.pagination.total) {
+        currentPage++;
+        getReviews(currentPage);
+        prevButton.disabled = false;
+      } else {
+        nextButton.disabled = true;
+      }
+    });
+  }
 }
