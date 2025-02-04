@@ -1,6 +1,5 @@
 import { afterEach, describe, expect, it, jest } from '@jest/globals';
 import { calculateAverageRating, isValidReview, sortMovies, top5Movies } from './top5Movies.js';
-import { loadMovies, loadReview, loadReviews } from './movies.js';
 
 ////////////////////////////////
 //Test for the isValidReview-function in top5Movies.js
