@@ -8,27 +8,33 @@
 @use './scss/movies.scss';
 @use './scss/movie.scss';
 @use './scss/error.scss';
+@use './scss/reviews.scss';
 
 * {
   font-family: 'Poppins', sans-serif;
   max-width: 100%;
 }
+
 html {
   background-color: $background-color;
   color: $text-color-main;
 }
+
 body {
   padding: 0;
   margin: 0;
   max-width: $screen-max;
   margin: auto;
 
-  .cinema-title, .cinema-open {
+  .cinema-title,
+  .cinema-open {
     margin-left: 1.2rem;
   }
+
   .open-div {
     margin-right: 1.2rem;
   }
+
   .kino-img {
     display: block;
     margin-left: auto;
