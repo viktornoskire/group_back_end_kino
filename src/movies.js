@@ -10,6 +10,7 @@ function easyObject(api) {
     id: api.id,
     ...api.attributes,
     intro: md.render(api.attributes.intro || ''),
+    imdbId: api.attributes.imdbId,
   };
 }
 
