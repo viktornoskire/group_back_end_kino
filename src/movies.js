@@ -72,10 +72,10 @@ const cmsScreening = {
 
 export default cmsScreening;
 
-export async function loadReview(id, pageSize, skip) {
+export async function loadReview(id, pageSize, page) {
 
   const api = 'https://plankton-app-xhkom.ondigitalocean.app/api/reviews';
-  const revURL = `${api}?filters[movie]=${id}&pagination[pageSize]=${pageSize}&pagination[page]=${skip}`;
+  const revURL = `${api}?filters[movie]=${id}&pagination[pageSize]=${pageSize}&pagination[page]=${page}`;
 
   const response = await fetch(revURL);
   const dataReview = await response.json();
