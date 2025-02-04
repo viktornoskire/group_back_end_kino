@@ -1,9 +1,7 @@
-import { loadReviews, getImdbRating, loadMovie } from './movies.js';
-
-export async function getMovieRating(movieId) {
+export async function getMovieRating(cmsAdapterRating, movieId) {
   try {
-    const reviews = await loadReviews(movieId);
-    const movie = await loadMovie(movieId);
+    const reviews = await cmsAdapterRating.loadReviews(movieId);
+    const movie = await cmsAdapterRating.loadMovie(movieId);
 
     if (reviews.length >= 5) {
       const ratings = reviews.map((review) => review.attributes.rating);
@@ -12,7 +10,7 @@ export async function getMovieRating(movieId) {
       console.log(averageRating);
       return averageRating;
     } else {
-      const imdbRating = await getImdbRating(movie.imdbId);
+      const imdbRating = await cmsAdapterRating.getImdbRating(movie.imdbId);
       return imdbRating;
     }
   } catch (error) {

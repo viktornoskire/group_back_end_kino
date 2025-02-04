@@ -1,52 +1,35 @@
-import { jest, test, expect, describe, } from '@jest/globals'
-import { getMovieRating } from './getMovieRating';
-import * as cmsAdapter from './cmsAdapter'; // Vi antar att loadReviews & loadMovie finns här
-import * as imdbService from './imdbService'; // Vi antar att getImdbRating finns här
-
-// Mocka CMS-adaptern och IMDB-service
-jest.mock('./cmsAdapter');
-jest.mock('./imdbService');
+import { afterEach, describe, expect, it, jest } from '@jest/globals';
+import { getMovieRating } from './rating.js';
 
 describe('getMovieRating', () => {
-  
-  test('Beräknar medelbetyg korrekt om det finns fem eller fler recensioner', async () => {
-    const mockReviews = [
-      { attributes: { rating: 5 } },
-      { attributes: { rating: 1 } },
-      { attributes: { rating: 4 } },
-      { attributes: { rating: 3 } },
-      { attributes: { rating: 5 } }
-    ];
+  it('returnerar genomsnittligt betyg för minst 5 recensioner', async () => {
+    const mockAdapter = {
+      loadReviews: async () => [
+        { attributes: { rating: 4 } },
+        { attributes: { rating: 5 } },
+        { attributes: { rating: 3 } },
+        { attributes: { rating: 4 } },
+        { attributes: { rating: 5 } }
+      ],
+      loadMovie: async () => ({ movieId: '9' }),
+      getImdbRating: async () => 7.8
+    };
 
-    const mockMovie = { imdbId: 'tt1234567' };
-
-    cmsAdapter.loadReviews.mockResolvedValue(mockReviews);
-    cmsAdapter.loadMovie.mockResolvedValue(mockMovie);
-
-    const expectedAverage = (5 + 1 + 4 + 3 + 5) / 5;
-    const result = await getMovieRating('movie123');
-
-    expect(result).toBe(expectedAverage);
+    const rating = await getMovieRating(mockAdapter, '9');
+    expect(rating).toBe(4.2);
   });
+  it('returnerar rating från imdb om det finns färre än fem recensioner', async () => {
+    const mockAdapter = {
+      loadReviews: async () => [
+        { attributes: { rating: 4 } },
+        { attributes: { rating: 5 } },
+        { attributes: { rating: 3 } },
+      ],
+      loadMovie: async () => ({ movieId: '9' }),
+      getImdbRating: async () => 7.8
+    };
 
-  test('Hämtar rating från IMDB om det finns färre än fem recensioner', async () => {
-    const mockReviews = [
-      { attributes: { rating: 8 } },
-      { attributes: { rating: 7 } },
-      { attributes: { rating: 9 } }
-    ];
-
-    const mockMovie = { imdbId: 'tt1234567' };
-
-    cmsAdapter.loadReviews.mockResolvedValue(mockReviews);
-    cmsAdapter.loadMovie.mockResolvedValue(mockMovie);
-
-    imdbService.getImdbRating.mockResolvedValue(8.5);
-
-    const result = await getMovieRating('movie123');
-
-    expect(imdbService.getImdbRating).toHaveBeenCalledWith('tt1234567');
-    expect(result).toBe(8.5);
-  });
-
+    const rating = await getMovieRating(mockAdapter, '9');
+    expect(rating).toBe(7.8);
+  })
 });
