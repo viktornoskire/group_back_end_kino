@@ -42,9 +42,10 @@ t.addEventListener('click', () => {
   (l.style.display = 'none'), t.classList.remove('active');
 });
 
+// __Send review inputs to swagger API__________________________
 if (document.querySelector('.movie-title')) {
   const reviewForm = document.querySelector('.review-box');
-  const API_URL = 'https://plankton-app-xhkom.ondigitalocean.app/api/reviews';
+  const REVIEW_API_URL = 'https://plankton-app-xhkom.ondigitalocean.app/api/reviews';
 
   reviewForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -57,11 +58,10 @@ if (document.querySelector('.movie-title')) {
     error.style.display = 'none';
 
     const movie = window.location.pathname.slice(-1);
-    console.log(movie);
 
     if (comment.value == '' || name.value == '') {
       console.log('Movie ID: ', movie);
-      console.log('Comment: ', comment.value ? comment.value : "No comment inserted");
+      console.log('Comment: ', comment.value ? comment.value : 'No comment inserted');
       console.log('Rating: ', rating.value);
       console.log('Name: ', name.value ? name.value : 'No name inserted');
       error.style.display = 'inline';
@@ -70,7 +70,7 @@ if (document.querySelector('.movie-title')) {
       console.log('Comment: ', comment.value);
       console.log('Rating: ', rating.value);
       console.log('Name: ', name.value);
-      fetch(API_URL, {
+      fetch(REVIEW_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
