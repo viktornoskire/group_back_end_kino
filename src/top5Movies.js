@@ -16,11 +16,6 @@ export async function top5Movies(cmsAdapter) {
       movies.map(async (movie) => {
         try {
           const reviews = await cmsAdapter.loadReviews(movie.id);
-          //This log is just here right now during development.
-          console.log(`\nRecensioner för film: ${movie.title} (ID: ${movie.id})`);
-          reviews.forEach((review) => {
-            console.log(`- Datum: ${review.attributes.createdAt}, Betyg: ${review.attributes.rating}`);
-          });
           //Returns the movie with the movies attribute and adds reviews.
           return {
             ...movie,
@@ -56,14 +51,6 @@ export async function top5Movies(cmsAdapter) {
     // Sorts movies and choose top 5, uses sortMovies function here.
     const topMovies = moviesWithRating.sort(sortMovies).slice(0, 5);
 
-    // temporarly console.log for debug.
-    console.log('\n=== SLUTRESULTAT ===');
-    console.log('Topp 5 filmer (senaste 30 dagarna):');
-    topMovies.forEach((movie, index) => {
-      console.log(
-        `${index + 1}. ${movie.title} - Betyg: ${movie.averageRating.toFixed(2)} (${movie.reviewCount} recensioner)`
-      );
-    });
     //Return the top 5 movies.
     return topMovies;
   } catch (error) {
