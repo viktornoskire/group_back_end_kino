@@ -1,7 +1,9 @@
 import { afterEach, describe, expect, it, jest } from '@jest/globals';
 import { getMovieRating } from './rating.js';
 
+
 describe('getMovieRating', () => {
+
   it('returnerar genomsnittligt betyg för minst 5 recensioner', async () => {
     const mockAdapter = {
       loadReviews: async () => [
@@ -32,4 +34,15 @@ describe('getMovieRating', () => {
     const rating = await getMovieRating(mockAdapter, '9');
     expect(rating).toBe(7.8);
   })
-});
+  it('returnera 0 vid fel', async () => {
+    const mockAdapter = {
+      loadReviews: async () => {
+        throw new Error('Något gick fel vid hämtning av recensioner');
+      },
+      loadMovie: async () => ({ movieId: '9' }),
+      getImdbRating: async () => 7.8
+    };
+    const rating = await getMovieRating(mockAdapter, '9');
+    expect(rating).toBe(0)
+  });
+}); 
