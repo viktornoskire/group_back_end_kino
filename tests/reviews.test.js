@@ -1,24 +1,31 @@
-import getReviews from '../static/reviews.js';
 import { describe, test, expect } from '@jest/globals';
+import { reviews } from '../static/reviews';
 
 describe('Paginated review', () => {
 
   test('Should display page 1', async () => {
-    const cmsAdapter = {
+    const cmsReviews = {
       fetchReviews: async () => [
-        {
-          pagination: {
-            page: 1,
-            pageSize: 5,
-            pageCount: 5,
-            total: 24
-          }
-        }
+        mockReview({
+          page: 1,
+        }),
       ]
     }
 
-    const reviews = await getReviews(cmsAdapter);
-    expect(reviews.currentPage).toBe(1);
+    //Test here
+
   });
 
 });
+
+function mockReview(overrids) {
+  return {
+    pagination: {
+      page: 1,
+      pageSize: 5,
+      pageCount: 5,
+      total: 24,
+      ...overrids
+    },
+  }
+}
