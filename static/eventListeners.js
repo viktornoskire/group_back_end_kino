@@ -54,8 +54,11 @@ if (document.querySelector('.movie-title')) {
     const name = document.querySelector('.name-input');
 
     const movie = window.location.pathname.slice(-1);
-    if (comment.value == "" || name.value == "") {
-      console.log("All fields must be filled!")
+    if (comment.value == '' || name.value == '') {
+      console.log('Movie ID: ', movie);
+      console.log('Comment: ', comment.value ? comment.value : "No comment inserted");
+      console.log('Rating: ', rating.value);
+      console.log('Name: ', name.value ? name.value : 'No name inserted');
     } else {
       console.log('Movie ID: ', movie);
       console.log('Comment: ', comment.value);
