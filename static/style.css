@@ -808,6 +808,16 @@ main .info .open-div :hover {
   border-radius: 25px;
   margin-bottom: 5rem;
 }
+.main .screeningsID-container {
+  grid-row: 4;
+  grid-column: 2;
+  padding-left: 2em;
+  border-radius: 25px;
+}
+.main .screeningsID-container .screeningsID-listitem {
+  list-style: none;
+  margin-left: -2.5rem;
+}
 .main .review-box {
   grid-row: 4;
   grid-column: 4;
