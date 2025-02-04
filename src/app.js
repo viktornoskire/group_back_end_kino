@@ -4,7 +4,9 @@ import { loadScreenings } from './screeningsFrontpage.js';
 import { top5Movies } from './top5Movies.js';
 import { loadReview } from './movies.js';
 import cmsScreening from './movies.js';
+import { getMovieRating } from './rating.js';
 import cmsAdapter from './cmsAdapterTop5Movies.js';
+
 
 export default function initialize(api) {
   const app = express();
