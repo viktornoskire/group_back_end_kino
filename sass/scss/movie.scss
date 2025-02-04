@@ -119,4 +119,16 @@
       padding-right: 3em;
     }
   }
+  .screeningsID-container {
+    grid-row: 4;
+    grid-column: 2;
+    padding-left: 2em;
+    border-radius: 25px;
+
+    .screeningsID-listitem {
+      list-style: none;
+      margin-left: -2.5rem;
+    }
+  }
+
 }
