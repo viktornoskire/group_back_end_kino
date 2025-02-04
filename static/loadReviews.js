@@ -1,4 +1,5 @@
 import getReviews from "./reviews.js";
+import cmsAdapter from "./fetchReviews.js";
 
 export default class loadReviews {
   constructor(reviews) {
@@ -31,7 +32,7 @@ export default class loadReviews {
     prevButton.addEventListener("click", () => {
       if (currentPage > 1) {
         currentPage--;
-        getReviews(currentPage);
+        getReviews(cmsAdapter, currentPage);
         nextButton.disabled = false;
       } else {
         prevButton.disabled = true;
@@ -42,7 +43,7 @@ export default class loadReviews {
     nextButton.addEventListener('click', () => {
       if ((currentPage * 5) < this.reviews.pagination.total) {
         currentPage++;
-        getReviews(currentPage);
+        getReviews(cmsAdapter, currentPage);
         prevButton.disabled = false;
       } else {
         nextButton.disabled = true;
