@@ -1,10 +1,9 @@
-import { loadReviews, getImdbRating, loadMovies } from './movies.js';
+import { loadReviews, getImdbRating, loadMovie } from './movies.js';
 
 export async function getMovieRating(movieId) {
   try {
     const reviews = await loadReviews(movieId);
-    const movies = await loadMovies();
-    const movie = movies.find((movie) => movie.id === movieId);
+    const movie = await loadMovie(movieId);
 
     if (reviews.length >= 5) {
       const ratings = reviews.map((review) => review.attributes.rating);
