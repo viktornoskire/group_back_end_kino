@@ -84,7 +84,7 @@ export async function loadReview(id, pageSize, page) {
     throw new Error(`Review with ${id} not found`);
   }
 
-  return dataReview.data;
+  return dataReview;
 }
 
 export async function getImdbRating(imdbId) {
