@@ -1,65 +1,7 @@
-import getReviews from "./reviews.js";
-import cmsAdapter from "./fetchReviews.js";
+export async function getReviews(cmsReviews, id, page) {
 
-export default class loadReviews {
-  constructor(reviews) {
-    this.reviews = reviews;
-  }
+  const data = await cmsReviews.fetchReviews(id, page);
 
-  render(elem) {
-    const revUl = elem.querySelector('.review-ul');
+  return data;
 
-    revUl.innerHTML = "";
-
-    this.reviews.reviews.forEach(review => {
-      const author = review.author;
-      const rating = review.rating;
-      const comment = review.comment;
-
-      const revCom = elem.createElement('li');
-      revCom.classList.add('review-li')
-      revCom.innerHTML = `
-    <p><strong>${author}</strong><p>
-    <p>Betyg - ${rating}</p>
-    <p>${comment}</p>`;
-
-      revUl.appendChild(revCom);
-    });
-
-    let currentPage = this.reviews.pagination.page;
-
-    const prevButton = elem.querySelector('.review-prev');
-    if (currentPage == 1) {
-      prevButton.disabled = true;
-    }
-
-
-    prevButton.addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        getReviews(cmsAdapter, currentPage);
-        nextButton.disabled = false;
-      } else {
-        prevButton.disabled = true;
-      }
-    });
-
-    const nextButton = elem.querySelector('.review-next');
-    console.log("pageCount", this.reviews.pagination.pageCount);
-    console.log("currentPage", currentPage)
-
-    if (currentPage == this.reviews.pagination.pageCount) {
-      nextButton.disabled = true;
-    }
-
-    nextButton.addEventListener('click', () => {
-      if ((currentPage * 5) < this.reviews.pagination.total) {
-        currentPage++;
-        getReviews(cmsAdapter, currentPage);
-        prevButton.disabled = false;
-      } else {
-        nextButton.disabled = true;
-      }
-    });
-  }
 }
