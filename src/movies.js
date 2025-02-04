@@ -85,3 +85,20 @@ export async function loadReview(id, pageSize, skip) {
 
   return dataReview.data;
 }
+
+export async function getImdbRating(imdbId) {
+  const apiKey = 'YOUR_OMDB_API_KEY'; // Väntar på min api key här!
+  const apiUrl = `http://www.omdbapi.com/?i=${imdbId}&plot=full&apikey=${apiKey}`;
+
+  try {
+    const res = await fetch(apiUrl);
+    if (!res.ok) {
+      throw new Error('Failed to fetch IMDB rating');
+    }
+    const data = await res.json();
+    return parseFloat(data.imdbRating) || 0;
+  } catch (error) {
+    console.error('Kunde inte hämta IMDB-betyg för filmen', error);
+    return 0;
+  }
+}
