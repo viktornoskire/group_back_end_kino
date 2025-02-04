@@ -39,6 +39,7 @@ n.addEventListener('click', () => {
   (l.style.display = 'none'), t.classList.remove('active');
 });
 t.addEventListener('click', () => {
+<<<<<<< HEAD
   (l.style.display = 'none'), t.classList.remove('active');
 });
 
@@ -65,11 +66,34 @@ if (document.querySelector('.movie-title')) {
       console.log('Rating: ', rating.value);
       console.log('Name: ', name.value ? name.value : 'No name inserted');
       error.style.display = 'inline';
+=======
+  (l.style.display = "none"), t.classList.remove('active');
+});
+
+// __ Access review input __ 
+
+if (document.querySelector('.movie-title')) {
+  const reviewForm = document.querySelector('.review-box');
+
+  reviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const comment = document.querySelector('.review-input');
+    const rating = document.querySelector('.rating-input');
+    const name = document.querySelector('.name-input');
+
+    const movie = window.location.pathname.slice(-1);
+    if (comment.value == '' || name.value == '') {
+      console.log('Movie ID: ', movie);
+      console.log('Comment: ', comment.value ? comment.value : "No comment inserted");
+      console.log('Rating: ', rating.value);
+      console.log('Name: ', name.value ? name.value : 'No name inserted');
+>>>>>>> main
     } else {
       console.log('Movie ID: ', movie);
       console.log('Comment: ', comment.value);
       console.log('Rating: ', rating.value);
       console.log('Name: ', name.value);
+<<<<<<< HEAD
       fetch(REVIEW_API_URL, {
         method: 'POST',
         headers: {
@@ -93,3 +117,12 @@ if (document.querySelector('.movie-title')) {
     name.value = '';
   });
 }
+=======
+    }
+
+    comment.value = "";
+    rating.value = 0;
+    name.value = "";
+  });
+};
+>>>>>>> main

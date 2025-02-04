@@ -53,20 +53,16 @@
       margin-left: 1em;
     }
   }
-  .accessibility {
+  .review-box {
     grid-row: 3;
     grid-column: 4;
     padding: 2em;
     background-color: $background-div-color;
     border-radius: 25px;
-    margin-bottom: 5rem;
-  }
-  .review-box {
-    grid-row: 4;
-    grid-column: 4;
-    padding: 2em;
-    background-color: $background-div-color;
-    border-radius: 25px;
+    .review-title {
+      margin: 0 0 1em 0;
+      font-size: 1.5em;
+    }
     .review-input {
       background-color: transparent;
       border: 3px solid $red-color;

@@ -15,19 +15,10 @@ block content
         .movie-desc!= movie.intro
         .book-btns 
             button.change-city Välj stad
-            button.view-tickets Visa biljetter
-        .accessibility 
-            h3.accessibility-ti Tillgänglighet
-            p.accessibility-tx. 
-                Kino Sandviken är tillgänglig för alla! Våra lokaler har 
-                rullstolsanpassade ingångar, ramper och sittplatser i varje salong. 
-                För gäster med nedsatt hörsel erbjuder vi hörslingor och 
-                textade visningar, och för de med nedsatt syn finns syntolkning 
-                tillgänglig vid utvalda filmer. Vår personal finns alltid på 
-                plats för att hjälpa till och göra besöket så smidigt som möjligt. 
+            button.view-tickets Visa biljetter 
         form.review-box
-            h3(style="margin: 0 0 1em 0; font-size: 1.5em;") Skapa recension
-            textarea(type="text", placeholder="Skriv en recension...").review-input
+            h3.review-title Skapa recension
+            input(type="text", placeholder="Skriv en recension...").review-input
             label(for="rating").rating-label Betyg 
             select.rating-input(name="rating") 
                 option(value="0").select-option 0
