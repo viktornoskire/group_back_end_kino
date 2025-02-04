@@ -3,6 +3,8 @@ extends templates/main
 
 block title
     title= movie.title
+    script. 
+            const movieId = !{movieId};
 block content 
     - const id = movie.id
     main.main 
@@ -28,7 +30,17 @@ block content
             input(type="rating", placeholder="Betyg...").review-rating
             input(type="text", placeholder="Namn...").name-input
             button(type="submit").review-btn Skicka
-        article.review-article Hej!
-            script(type="module" src="../static/reviews.js")
+        section.screeningsID-container 
+            h3.screeningsID-title Kommande visningar av #{movie.title}
+            ul.screeningsID-list
+        
 
+    article.review-article  
+        h2.review-header Recensioner
+        .review-div 
+            ul.review-ul      
+        .review-button
+            button.review-prev Föregående
+            button.review-next Nästa
+        script(type="module" src="../static/reviews.js")
     
