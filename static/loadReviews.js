@@ -29,6 +29,11 @@ export default class loadReviews {
     let currentPage = this.reviews.pagination.page;
 
     const prevButton = elem.querySelector('.review-prev');
+    if (currentPage == 1) {
+      prevButton.disabled = true;
+    }
+
+
     prevButton.addEventListener("click", () => {
       if (currentPage > 1) {
         currentPage--;
@@ -40,6 +45,13 @@ export default class loadReviews {
     });
 
     const nextButton = elem.querySelector('.review-next');
+    console.log("pageCount", this.reviews.pagination.pageCount);
+    console.log("currentPage", currentPage)
+
+    if (currentPage == this.reviews.pagination.pageCount) {
+      nextButton.disabled = true;
+    }
+
     nextButton.addEventListener('click', () => {
       if ((currentPage * 5) < this.reviews.pagination.total) {
         currentPage++;
