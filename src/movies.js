@@ -88,13 +88,13 @@ export async function loadReview(id, pageSize, page) {
 }
 
 export async function getImdbRating(imdbId) {
-  const apiKey = 'YOUR_OMDB_API_KEY'; // Väntar på min api key här!
-  const apiUrl = `http://www.omdbapi.com/?i=${imdbId}&plot=full&apikey=${apiKey}`;
+  const apiKey = 'b9b5e708'; //Min api key
+  const apiUrl = `https://www.omdbapi.com/?i=${imdbId}&plot=full&apikey=${apiKey}`;
 
   try {
     const res = await fetch(apiUrl);
     if (!res.ok) {
-      throw new Error('Failed to fetch IMDB rating');
+      throw new Error('Kunde inte hämta IMDB-betyg');
     }
     const data = await res.json();
     return parseFloat(data.imdbRating) || 0;
