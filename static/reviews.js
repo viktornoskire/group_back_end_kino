@@ -1,6 +1,3 @@
-const parts = window.location.pathname.split('/');
-const movieId = parts.length > 2 ? parts[2] : null;
-
 async function reviews(page) {
 
   page = page || 1;
@@ -8,8 +5,6 @@ async function reviews(page) {
   try {
     const response = await fetch(`/api/reviews/${movieId}/${page}`);
     const data = await response.json();
-
-    console.log("min data", data);
 
     const revUl = document.querySelector('.review-ul');
     revUl.innerHTML = "";
@@ -39,33 +34,36 @@ async function reviews(page) {
     if (currentPage == 1) {
       prevButton.disabled = true;
     }
-
-    prevButton.addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        reviews(currentPage);
-        nextButton.disabled = false;
-      } else {
-        prevButton.disabled = true;
-      }
-    });
+    if (!prevButton.dataset.listener) {
+      prevButton.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          reviews(currentPage);
+          nextButton.disabled = false;
+        } else {
+          prevButton.disabled = true;
+        }
+      });
+      prevButton.dataset.listener = 'true';
+    }
 
     const nextButton = document.querySelector('.review-next');
 
     if (currentPage == data.pagination.pageCount) {
       nextButton.disabled = true;
     }
-
-    nextButton.addEventListener('click', () => {
-      if ((currentPage * 5) < data.pagination.total) {
-        currentPage++;
-        reviews(currentPage);
-        prevButton.disabled = false;
-      } else {
-        nextButton.disabled = true;
-      }
-    });
-
+    if (!nextButton.dataset.listener) {
+      nextButton.addEventListener('click', () => {
+        if ((currentPage * 5) < data.pagination.total) {
+          currentPage++;
+          reviews(currentPage);
+          prevButton.disabled = false;
+        } else {
+          nextButton.disabled = true;
+        }
+      });
+      nextButton.dataset.listener = 'true';
+    }
   } catch (error) {
     console.log('Couldnt get reviwes', error);
   }
