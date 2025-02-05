@@ -33,11 +33,64 @@ const r = document.querySelector('.hamburger-btn'),
   l = document.querySelector('.menu-overlay'),
   t = document.querySelector('.overlay-blur');
 r.addEventListener('click', () => {
-  l.style.display = "block", t.classList.add('active');
+  (l.style.display = 'block'), t.classList.add('active');
 });
 n.addEventListener('click', () => {
-  l.style.display = "none", t.classList.remove('active');
+  (l.style.display = 'none'), t.classList.remove('active');
 });
 t.addEventListener('click', () => {
-  (l.style.display = "none"), t.classList.remove('active');
+  (l.style.display = 'none'), t.classList.remove('active');
 });
+
+// __Send review inputs to swagger API__________________________
+if (document.querySelector('.movie-title')) {
+  const reviewForm = document.querySelector('.review-box');
+  const API_URL = 'https://plankton-app-xhkom.ondigitalocean.app/api/';
+
+  reviewForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const comment = reviewForm.querySelector('.review-input');
+    const rating = reviewForm.querySelector('.rating-input');
+    const name = reviewForm.querySelector('.name-input');
+    const error = reviewForm.querySelector('.error-message');
+
+    error.style.display = 'none';
+
+    const movieID = window.location.pathname.split("/")[2];
+
+    if (comment.value == '' || name.value == '') {
+      console.log('Movie ID: ', movieID);
+      console.log('Comment: ', comment.value ? comment.value : 'No comment inserted');
+      console.log('Rating: ', rating.value);
+      console.log('Name: ', name.value ? name.value : 'No name inserted');
+      error.style.display = 'inline';
+    } else {
+      console.log('Movie ID: ', movieID);
+      console.log('Comment: ', comment.value);
+      console.log('Rating: ', rating.value);
+      console.log('Name: ', name.value);
+      fetch(API_URL + "reviews", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            comment: comment.value,
+            rating: rating.value,
+            author: name.value,
+            movie: movieID,
+            verified: true,
+          },
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log('Success:', data))
+        .catch((error) => console.log('Error:', error));
+    }
+    comment.value = '';
+    rating.value = 0;
+    name.value = '';
+  });
+}

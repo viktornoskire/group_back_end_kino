@@ -10,6 +10,7 @@ function easyObject(api) {
     id: api.id,
     ...api.attributes,
     intro: md.render(api.attributes.intro || ''),
+    imdbId: api.attributes.imdbId,
   };
 }
 
@@ -70,3 +71,35 @@ const cmsScreening = {
 };
 
 export default cmsScreening;
+
+export async function loadReview(id, pageSize, page) {
+
+  const api = 'https://plankton-app-xhkom.ondigitalocean.app/api/reviews';
+  const revURL = `${api}?filters[movie]=${id}&pagination[pageSize]=${pageSize}&pagination[page]=${page}`;
+
+  const response = await fetch(revURL);
+  const dataReview = await response.json();
+
+  if (!dataReview) {
+    throw new Error(`Review with ${id} not found`);
+  }
+
+  return dataReview;
+}
+
+export async function getImdbRating(imdbId) {
+  const apiKey = 'b9b5e708'; //Min api key
+  const apiUrl = `https://www.omdbapi.com/?i=${imdbId}&plot=full&apikey=${apiKey}`;
+
+  try {
+    const res = await fetch(apiUrl);
+    if (!res.ok) {
+      throw new Error('Kunde inte hämta IMDB-betyg');
+    }
+    const data = await res.json();
+    return parseFloat(data.imdbRating) || 0;
+  } catch (error) {
+    console.error('Kunde inte hämta IMDB-betyg för filmen', error);
+    return 0;
+  }
+}

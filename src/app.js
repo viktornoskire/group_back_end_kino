@@ -3,6 +3,8 @@ import createData from './db.js';
 import { loadScreenings } from './screeningsFrontpage.js';
 import { top5Movies } from './top5Movies.js';
 import cmsScreening from './movies.js';
+import { getMovieRating } from './rating.js';
+import cmsAdapter from './cmsAdapterTop5Movies.js';
 import { getReviews } from '../static/loadReviews.js';
 import cmsReviews from '../static/cmsReviews.js';
 
@@ -18,8 +20,7 @@ export default function initialize(api) {
 
   app.get('/api/top-movies', async (req, res) => {
     try {
-      const movies = await top5Movies();
-
+      const movies = await top5Movies(cmsAdapter);
       res.json({
         movies: movies.map((movie) => ({
           id: movie.id,
