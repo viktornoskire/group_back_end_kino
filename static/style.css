@@ -875,6 +875,16 @@ main .info .open-div :hover {
   font-style: italic;
   display: none;
 }
+.main .screeningsID-container {
+  grid-row: 4;
+  grid-column: 2;
+  padding-left: 2em;
+  border-radius: 25px;
+}
+.main .screeningsID-container .screeningsID-listitem {
+  list-style: none;
+  margin-left: -2.5rem;
+}
 
 .error-div {
   text-align: center;
