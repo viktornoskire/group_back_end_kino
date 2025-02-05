@@ -1,5 +1,5 @@
 import { expect, it } from '@jest/globals';
-import { filterScreeningsByDate, nextTenScreenings } from '../src/screeningsFrontpage.js';
+import { filterScreeningsByDate, nextTenScreenings } from './screeningsFrontpage.js';
 
 it('Show screenings of next 5 days', () => {
   const today = new Date(2025, 0, 31);
@@ -17,7 +17,6 @@ it('Show screenings of next 5 days', () => {
   ];
 
   const filtered = filterScreeningsByDate(screenings, today);
-  console.log(filtered);
 
   expect(filtered).toHaveLength(6);
   expect(filtered).toContainEqual(screenings[0]);
@@ -47,7 +46,6 @@ it('Show maximum of 10 screenings sorted by date', () => {
   ];
 
   const nextTenScreeningsResult = nextTenScreenings(screenings);
-  console.log(nextTenScreeningsResult);
 
   expect(nextTenScreeningsResult).toHaveLength(10);
   expect(nextTenScreeningsResult[0].start_time <= nextTenScreeningsResult[1].start_time).toBe(true);

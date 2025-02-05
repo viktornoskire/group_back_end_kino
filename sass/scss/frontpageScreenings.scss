@@ -1,9 +1,12 @@
 @use './lib.scss' as *;
 
 .screenings-container {
-  max-width: 1280px;
   background-color: $background-color;
   color: $text-color-main;
-  padding: 0 1rem;
-  margin: 1em auto;
+  margin: 3rem 1rem;
+  padding-left: 2rem;
+}
+
+.screenings-list li {
+  padding: 0.5rem;
 }

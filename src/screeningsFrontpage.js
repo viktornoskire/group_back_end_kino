@@ -15,19 +15,20 @@ export async function fetchScreenings() {
 }
 
 export function filterScreeningsByDate(screenings, today) {
+  if (!today) {
+    today = new Date();
+  }
+  
   const currentDate = new Date(today);
-  currentDate.setHours(0, 0, 0, 0);
 
   const dateInFiveDays = new Date(currentDate);
   dateInFiveDays.setDate(currentDate.getDate() + 5);
 
-  return screenings.filter(screening => {
-    if (screening.start_time >= currentDate && screening.start_time <= dateInFiveDays) {
-      return true;
-    } else {
-      return false;
-    }
-  });
+  screenings = screenings.filter(screening =>
+    screening.start_time >= currentDate && screening.start_time <= dateInFiveDays
+  );
+
+  return screenings;
 }
 
 

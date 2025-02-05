@@ -873,11 +873,14 @@ main .info .open-div :hover {
 }
 
 .screenings-container {
-  max-width: 1280px;
   background-color: #1a1a1a;
   color: #f6f6f6;
-  padding: 0 1rem;
-  margin: 1em auto;
+  margin: 3rem 1rem;
+  padding-left: 2rem;
+}
+
+.screenings-list li {
+  padding: 0.5rem;
 }
 
 * {
