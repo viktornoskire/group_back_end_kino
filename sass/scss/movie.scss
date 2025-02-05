@@ -118,6 +118,15 @@
       padding-left: 3em;
       padding-right: 3em;
     }
+    .error-message {
+      display: inline; 
+      margin-left: 1em; 
+      font-size: 1.2em; 
+      font-weight: 700; 
+      color: #fc263a; 
+      font-style: italic;
+      display: none;
+    }
   }
   .screeningsID-container {
     grid-row: 4;
