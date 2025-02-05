@@ -2,11 +2,11 @@ import express from 'express';
 import createData from './db.js';
 import { loadScreenings } from './screeningsFrontpage.js';
 import { top5Movies } from './top5Movies.js';
-import { loadReview } from './movies.js';
 import cmsScreening from './movies.js';
 import { getMovieRating } from './rating.js';
 import cmsAdapter from './cmsAdapterTop5Movies.js';
-
+import { getReviews } from '../static/loadReviews.js';
+import cmsReviews from '../static/cmsReviews.js';
 
 export default function initialize(api) {
   const app = express();
@@ -55,27 +55,27 @@ export default function initialize(api) {
     }
   });
 
-  app.get('/api/reviews/:id', async (req, res) => {
+  app.get('/api/reviews/:id/:page', async (req, res) => {
     const id = req.params.id;
-    const page = parseInt(req.query.page) || 1;
+    const page = req.params.page || 1;
     const pageSize = 5;
 
-
     try {
-      const dataReview = await loadReview(id, pageSize, page);
-      
-      if (!dataReview || !dataReview.data) {
+      const dataReview = await getReviews(cmsReviews, id, page, pageSize);
+
+      if (!dataReview) {
         return res.status(404).json({ error: "Recensioner hittades inte" });
-    }
-    
+      }
+
       res.json({
-        reviews: dataReview.data.map(review => ({
-          author: review.attributes.author,
-          rating: review.attributes.rating,
-          comment: review.attributes.comment,
+        reviews: dataReview.reviews.map(review => ({
+          author: review.author,
+          rating: review.rating,
+          comment: review.comment,
         })),
-        pagination: dataReview.meta.pagination
+        pagination: dataReview.pagination
       });
+
     } catch (err) {
       console.error(err.message);
       res.status(404);
