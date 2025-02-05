@@ -4,6 +4,9 @@ import { loadScreenings } from './screeningsFrontpage.js';
 import { top5Movies } from './top5Movies.js';
 import { loadReview } from './movies.js';
 import cmsScreening from './movies.js';
+import { getMovieRating } from './rating.js';
+import cmsAdapter from './cmsAdapterTop5Movies.js';
+
 
 export default function initialize(api) {
   const app = express();
@@ -17,7 +20,7 @@ export default function initialize(api) {
 
   app.get('/api/top-movies', async (req, res) => {
     try {
-      const movies = await top5Movies();
+      const movies = await top5Movies(cmsAdapter);
       res.json({
         movies: movies.map((movie) => ({
           id: movie.id,
@@ -43,6 +46,8 @@ export default function initialize(api) {
       res.render('movie', {
         data: createData(),
         movie: movie,
+        movieId: id
+
       });
     } catch (err) {
       console.error(err.message);
@@ -52,24 +57,24 @@ export default function initialize(api) {
 
   app.get('/api/reviews/:id', async (req, res) => {
     const id = req.params.id;
-    const page = req.query.page || 1;
+    const page = parseInt(req.query.page) || 1;
     const pageSize = 5;
-    // const skip = (page - 1) * pageSize;
+
 
     try {
-      const reviews = await loadReview(id, pageSize, skip);
-      console.log('svar', reviews);
-      if (!reviews) {
-        return res.status(404);
-      }
-
+      const dataReview = await loadReview(id, pageSize, page);
+      
+      if (!dataReview || !dataReview.data) {
+        return res.status(404).json({ error: "Recensioner hittades inte" });
+    }
+    
       res.json({
-        reviews: reviews.map((review) => ({
+        reviews: dataReview.data.map(review => ({
           author: review.attributes.author,
           rating: review.attributes.rating,
           comment: review.attributes.comment,
         })),
-        pagination: reviews.meta,
+        pagination: dataReview.meta.pagination
       });
     } catch (err) {
       console.error(err.message);
