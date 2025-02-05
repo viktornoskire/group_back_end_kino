@@ -56,7 +56,7 @@ export default function initialize(api) {
 
   app.get('/api/reviews/:id/:page', async (req, res) => {
     const id = req.params.id;
-    const page = req.params.page || 1; //check how to update
+    const page = req.params.page || 1;
     const pageSize = 5;
 
     try {

@@ -1,9 +1,9 @@
+const parts = window.location.pathname.split('/');
+const movieId = parts.length > 2 ? parts[2] : null;
+
 async function reviews(page) {
 
-  const parts = window.location.pathname.split('/');
-  const movieId = parts.length > 2 ? parts[2] : null;
-
-  page = page || 1; //Needs to be declared 
+  page = page || 1;
 
   try {
     const response = await fetch(`/api/reviews/${movieId}/${page}`);

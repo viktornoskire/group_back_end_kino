@@ -3,7 +3,7 @@ const api = 'https://plankton-app-xhkom.ondigitalocean.app/api/reviews';
 const cmsReviews = {
   fetchReviews: async (id, page, pageSize) => {
 
-    pageSize = 5; //Denna som styr pageSize
+    pageSize = 5;
 
     const url = (`${api}?filters[movie]=${id}&pagination[pageSize]=${pageSize}&pagination[page]=${page}`);
 

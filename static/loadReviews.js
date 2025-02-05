@@ -1,6 +1,6 @@
-export async function getReviews(cmsReviews, id, page) {
+export async function getReviews(cmsReviews, id, page, pageSize) {
 
-  const data = await cmsReviews.fetchReviews(id, page);
+  const data = await cmsReviews.fetchReviews(id, page, pageSize);
 
   return data;
 
