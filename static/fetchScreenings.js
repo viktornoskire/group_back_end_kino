@@ -19,7 +19,7 @@
       throw new Error(`Error HTTP Status Code: ${response.status}`);
     }
 
-    const data = await response.json();
+    const {data} = await response.json();
    
     if (data.length === 0) {
       const li = document.createElement("li");

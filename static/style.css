@@ -758,9 +758,20 @@ main .info .open-div :hover {
 .main .home-page {
   color: inherit;
 }
-.main .movie-title {
+.main .title-div {
   grid-row: 2;
+  margin-bottom: 2em;
+}
+.main .title-div .movie-title {
   font-size: 2.5em;
+}
+.main .title-div p {
+  font-size: 1.5em;
+  display: inline;
+}
+.main .title-div .rating-rating {
+  display: inline;
+  margin-left: 2em;
 }
 .main .movie-img {
   grid-row: 3/5;

@@ -11,9 +11,20 @@
   .home-page {
     color: inherit;
   }
-  .movie-title {
+  .title-div {
     grid-row: 2;
-    font-size: 2.5em;
+    margin-bottom: 2em;
+    .movie-title {
+      font-size: 2.5em;
+    }
+    p {
+      font-size: 1.5em;
+      display: inline;
+    }
+    .rating-rating {
+      display: inline;
+      margin-left: 2em;
+    }
   }
   .movie-img {
     grid-row: 3 / 5;
@@ -119,11 +130,11 @@
       padding-right: 3em;
     }
     .error-message {
-      display: inline; 
-      margin-left: 1em; 
-      font-size: 1.2em; 
-      font-weight: 700; 
-      color: #fc263a; 
+      display: inline;
+      margin-left: 1em;
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #fc263a;
       font-style: italic;
       display: none;
     }
@@ -139,5 +150,4 @@
       margin-left: -2.5rem;
     }
   }
-
 }
