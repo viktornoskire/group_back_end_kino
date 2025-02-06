@@ -15,15 +15,15 @@ async function reviews(page) {
       revUl.append(revLi);
 
       const revAut = document.createElement('p')
-      revAut.textContent = review.author;
+      revAut.textContent = "Namn: " + review.author;
       revLi.append(revAut);
 
       const revRat = document.createElement('p')
-      revRat.textContent = review.rating;
+      revRat.textContent = "Betyg: " + review.rating;
       revLi.append(revRat);
 
       const revCom = document.createElement('p')
-      revCom.textContent = review.comment;
+      revCom.textContent = "Kommentar: " + review.comment;
       revLi.append(revCom);
 
     });

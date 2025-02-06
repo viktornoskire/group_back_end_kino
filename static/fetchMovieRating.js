@@ -7,7 +7,7 @@
     const titleDiv = document.querySelector(".title-div");
     const ratingEl = document.createElement("p");
     ratingEl.classList.add("rating-title");
-    ratingEl.innerText = "Rating: ";
+    ratingEl.innerText = "Betyg: ";
 
     const star = document.createElement("i");
     star.setAttribute("class", "fa-solid fa-star")
