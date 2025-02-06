@@ -1,56 +1,73 @@
+async function reviews(page) {
 
-document.addEventListener('DOMContentLoaded', function () {
-  async function fetchReviews (page) {
-    const url = (`/api/reviews/${movieId}?page=${page}`);
-    const res = await fetch(url)
-    const data = await res.json();
-   
-    if (!data.pagination || data.pagination.page === "undefined" || data.pagination.pageCount === "undefined") {
-      prevButton.disabled = true;
-      nextButton.disabled = true;
-    } else {
-        prevButton.disabled = data.pagination.page === 1;
-        nextButton.disabled = data.pagination.page >= data.pagination.pageCount;
-    }
+  page = page || 1;
+
+  try {
+    const response = await fetch(`/api/reviews/${movieId}/${page}`);
+    const data = await response.json();
 
     const revUl = document.querySelector('.review-ul');
     revUl.innerHTML = "";
 
     data.reviews.forEach(review => {
-      const author = review.author;
-      const rating = review.rating;
-      const comment = review.comment;
+      const revLi = document.createElement('li');
+      revLi.classList.add('review-li');
+      revUl.append(revLi);
 
-      const revCom = document.createElement('li');
-      revCom.classList.add('review-li')
-      revCom.innerHTML = `
-      <p><strong>${author}</strong><p>
-      <p>Betyg - ${rating}</p>
-      <p>${comment}</p>`;
+      const revAut = document.createElement('p')
+      revAut.textContent = "Namn: " + review.author;
+      revLi.append(revAut);
 
-      revUl.appendChild(revCom);
+      const revRat = document.createElement('p')
+      revRat.textContent = "Betyg: " + review.rating;
+      revLi.append(revRat);
+
+      const revCom = document.createElement('p')
+      revCom.textContent = "Kommentar: " + review.comment;
+      revLi.append(revCom);
+
     });
+
+    let currentPage = data.pagination.page;
+
+    const prevButton = document.querySelector('.review-prev');
+    if (currentPage == 1) {
+      prevButton.disabled = true;
+    }
+    if (!prevButton.dataset.listener) {
+      prevButton.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          reviews(currentPage);
+          nextButton.disabled = false;
+        } else {
+          prevButton.disabled = true;
+        }
+      });
+      prevButton.dataset.listener = 'true';
+    }
+
+    const nextButton = document.querySelector('.review-next');
+
+    if (currentPage == data.pagination.pageCount) {
+      nextButton.disabled = true;
+    }
+    if (!nextButton.dataset.listener) {
+      nextButton.addEventListener('click', () => {
+        if ((currentPage * 5) < data.pagination.total) {
+          currentPage++;
+          reviews(currentPage);
+          prevButton.disabled = false;
+        } else {
+          nextButton.disabled = true;
+        }
+      });
+      nextButton.dataset.listener = 'true';
+    }
+  } catch (error) {
+    console.log('Couldnt get reviwes', error);
   }
+}
 
-  let currentPage = 1;
-  const prevButton = document.querySelector('.review-prev');
-  prevButton.addEventListener("click", () =>{
-    if (currentPage > 1) {
-      currentPage--;
-      fetchReviews(currentPage)
-    }
-  });
+reviews();
 
-  const nextButton = document.querySelector('.review-next');
-  nextButton.addEventListener('click', () =>{
-    if(!nextButton.disabled){
-      currentPage++;
-      fetchReviews(currentPage);
-    }
-  });
-
-  fetchReviews(currentPage);
-});
-
-
- 
