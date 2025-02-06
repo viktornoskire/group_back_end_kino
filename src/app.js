@@ -64,7 +64,7 @@ export default function initialize(api) {
       const dataReview = await getReviews(cmsReviews, id, page, pageSize);
 
       if (!dataReview) {
-        return res.status(404).json({ error: 'Recensioner hittades inte' });
+        return res.status(500).json({ error: 'Recensioner hittades inte' });
       }
 
       res.json({
@@ -105,7 +105,7 @@ export default function initialize(api) {
       const screenings = await cmsScreening.loadScreeningsID(req, res);
       const rating = await getMovieRating(cmsAdapterRating, movieID);
       console.log(rating);
-      
+
       if (!screenings) {
         throw new Error('Array does not contain any screenings.');
       }
