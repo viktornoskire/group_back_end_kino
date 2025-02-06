@@ -1,8 +1,18 @@
-const frontpageScreeningsList = document.querySelector(".screenings-list");
+document.addEventListener("DOMContentLoaded", function () {
+  fetchFrontpageScreeningsData();
+});
 
 async function fetchFrontpageScreeningsData() {
   const response = await fetch("/api/screenings");
   const screenings = await response.json();
+
+  const frontpageScreeningsList = document.querySelector(".screenings-list");
+
+  // Kontrollera om elementet finns
+  if (!frontpageScreeningsList) {
+    console.error('Elementet .screenings-list hittades inte!');
+    return;
+  }
 
   if (screenings.length === 0) {
     frontpageScreeningsList.innerHTML = "<li>Inga visningar tillgängliga just nu.</li>";
@@ -15,5 +25,3 @@ async function fetchFrontpageScreeningsData() {
     frontpageScreeningsList.appendChild(listItem);
   });
 }
-
-fetchFrontpageScreeningsData();
