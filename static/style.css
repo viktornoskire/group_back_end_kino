@@ -758,49 +758,49 @@ main .info .open-div :hover {
 .main .home-page {
   color: inherit;
 }
-.main .title-div .movie-title {
+.main .title-div {
   grid-row: 2;
   margin-bottom: 2em;
 }
-.main .title-div .movie-title .movie-title {
+.main .title-div .movie-title {
   font-size: 2.5em;
 }
-.main .title-div .movie-title .rating-title {
+.main .title-div .rating-title {
   font-weight: 700;
   margin: 0;
   font-size: 1.5em;
   display: inline;
 }
-.main .title-div .movie-title i {
+.main .title-div i {
   font-size: 1.5em;
   margin-left: 0.2em;
 }
-.main .title-div .movie-title .rating-num {
+.main .title-div .rating-num {
   display: inline;
   font-weight: 700;
   font-size: 1.5em;
   margin-left: 0.5em;
 }
-.main .title-div .movie-img {
+.main .movie-img {
   grid-row: 3/5;
   grid-column: 1;
   border-radius: 25px;
   width: 50%;
 }
-.main .title-div .movie-desc {
+.main .movie-desc {
   grid-row: 3;
   grid-column: 2;
   font-size: 1.5em;
   margin: 0 0 0 1em;
   width: 70%;
 }
-.main .title-div .book-btns {
+.main .book-btns {
   grid-row: 2;
   grid-column: 4;
   margin-left: auto;
   margin-right: auto;
 }
-.main .title-div .book-btns .change-city {
+.main .book-btns .change-city {
   background-color: #fc263a;
   padding: 1rem 3rem;
   border-radius: 1.8rem;
@@ -809,7 +809,7 @@ main .info .open-div :hover {
   font-size: 1.1em;
   border-color: transparent;
 }
-.main .title-div .book-btns .view-tickets {
+.main .book-btns .view-tickets {
   background-color: transparent;
   padding: 1rem 3rem;
   border-radius: 1.8rem;
@@ -819,18 +819,18 @@ main .info .open-div :hover {
   font-size: 1.1em;
   margin-left: 1em;
 }
-.main .title-div .review-box {
+.main .review-box {
   grid-row: 3;
   grid-column: 4;
   padding: 2em;
   background-color: #2d2d2d;
   border-radius: 25px;
 }
-.main .title-div .review-box .review-title {
+.main .review-box .review-title {
   margin: 0 0 1em 0;
   font-size: 1.5em;
 }
-.main .title-div .review-box .review-input {
+.main .review-box .review-input {
   background-color: transparent;
   border: 3px solid #fc263a;
   padding: 0.4em 0 3em 0.4em;
@@ -842,7 +842,7 @@ main .info .open-div :hover {
   color: white;
   outline: none;
 }
-.main .title-div .review-box .name-input {
+.main .review-box .name-input {
   width: 50%;
   margin-bottom: 1em;
   margin-left: 1em;
@@ -854,12 +854,12 @@ main .info .open-div :hover {
   border-radius: 10px;
   outline: none;
 }
-.main .title-div .review-box .rating-label {
+.main .review-box .rating-label {
   font-size: 1.2em;
   font-weight: 700;
   margin-right: 0.2em;
 }
-.main .title-div .review-box .rating-input {
+.main .review-box .rating-input {
   border: 3px solid #fc263a;
   background-color: transparent;
   padding: 0.2em 0em 0.2em 0.4em;
@@ -870,12 +870,12 @@ main .info .open-div :hover {
   font-size: 1.2em;
   font-weight: 700;
 }
-.main .title-div .review-box .select-option {
+.main .review-box .select-option {
   background-color: #1a1a1a;
   border-radius: 5px;
   font-weight: 700;
 }
-.main .title-div .review-box .review-btn {
+.main .review-box .review-btn {
   background-color: #fc263a;
   border: none;
   border-radius: 30px;
@@ -885,7 +885,7 @@ main .info .open-div :hover {
   padding-left: 3em;
   padding-right: 3em;
 }
-.main .title-div .review-box .error-message {
+.main .review-box .error-message {
   display: inline;
   margin-left: 1em;
   font-size: 1.2em;
@@ -894,25 +894,26 @@ main .info .open-div :hover {
   font-style: italic;
   display: none;
 }
-.main .title-div .screeningsID-container {
+.main .screeningsID-container {
   grid-row: 4;
   grid-column: 2;
   padding-left: 2em;
   border-radius: 25px;
 }
-.main .title-div .screeningsID-container .screeningsID-listitem {
+.main .screeningsID-container .screeningsID-listitem {
   list-style: none;
   margin-left: -2.5rem;
 }
-.main .review-article {
+
+.review-article {
   grid-column: 4;
   grid-row: 4;
 }
-.main .review-article .review-header {
+.review-article .review-header {
   font-size: 2rem;
   padding-left: 1rem;
 }
-.main .review-article .review-div {
+.review-article .review-div {
   height: 280px;
   overflow: scroll;
   overflow-x: hidden;
@@ -921,15 +922,15 @@ main .info .open-div :hover {
   border: solid #f6f6f6;
   border-radius: 1rem;
 }
-.main .review-article .review-div .review-ul {
+.review-article .review-div .review-ul {
   list-style-type: none;
   padding-left: 0.5rem;
 }
-.main .review-article .review-div .review-ul .review-li {
+.review-article .review-div .review-ul .review-li {
   font-size: 1.25rem;
   border-bottom: solid #f6f6f6;
 }
-.main .review-article .review-prev {
+.review-article .review-prev {
   background-color: #fc263a;
   border: none;
   border-radius: 30px;
@@ -940,10 +941,10 @@ main .info .open-div :hover {
   padding-right: 3em;
   margin-left: 1rem;
 }
-.main .review-article .review-prev:disabled {
+.review-article .review-prev:disabled {
   background-color: #a8a8a8;
 }
-.main .review-article .review-next {
+.review-article .review-next {
   background-color: #fc263a;
   border: none;
   border-radius: 30px;
@@ -954,7 +955,7 @@ main .info .open-div :hover {
   padding-right: 3em;
   margin-left: 1rem;
 }
-.main .review-article .review-next:disabled {
+.review-article .review-next:disabled {
   background-color: #a8a8a8;
 }
 
@@ -975,6 +976,11 @@ main .info .open-div :hover {
   color: #f6f6f6;
   margin: 3rem 1rem;
   padding-left: 2rem;
+}
+
+.screenings-list {
+  padding: 0;
+  list-style: none;
 }
 
 .screenings-list li {

@@ -47,6 +47,7 @@ it('Show maximum of 10 screenings sorted by date', () => {
 
   const nextTenScreeningsResult = nextTenScreenings(screenings);
 
+
   expect(nextTenScreeningsResult).toHaveLength(10);
   expect(nextTenScreeningsResult[0].start_time <= nextTenScreeningsResult[1].start_time).toBe(true);
   expect(nextTenScreeningsResult[7].start_time >= nextTenScreeningsResult[6].start_time).toBe(true);
