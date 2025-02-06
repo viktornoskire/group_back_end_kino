@@ -885,6 +885,59 @@ main .info .open-div :hover {
   list-style: none;
   margin-left: -2.5rem;
 }
+.main .review-article {
+  grid-column: 4;
+  grid-row: 4;
+}
+.main .review-article .review-header {
+  font-size: 2rem;
+  padding-left: 1rem;
+}
+.main .review-article .review-div {
+  height: 280px;
+  overflow: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  margin-bottom: 1rem;
+  border: solid #f6f6f6;
+  border-radius: 1rem;
+}
+.main .review-article .review-div .review-ul {
+  list-style-type: none;
+  padding-left: 0.5rem;
+}
+.main .review-article .review-div .review-ul .review-li {
+  font-size: 1.25rem;
+  border-bottom: solid #f6f6f6;
+}
+.main .review-article .review-prev {
+  background-color: #fc263a;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 700;
+  padding: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
+  margin-left: 1rem;
+}
+.main .review-article .review-prev:disabled {
+  background-color: #a8a8a8;
+}
+.main .review-article .review-next {
+  background-color: #fc263a;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 700;
+  padding: 1em;
+  padding-left: 3em;
+  padding-right: 3em;
+  margin-left: 1rem;
+}
+.main .review-article .review-next:disabled {
+  background-color: #a8a8a8;
+}
 
 .error-div {
   text-align: center;
@@ -896,50 +949,6 @@ main .info .open-div :hover {
 }
 .error-div .back-to-home {
   color: inherit;
-}
-
-.review-article .review-header {
-  font-size: 2rem;
-  padding-left: 1rem;
-}
-.review-article .review-div .review-ul {
-  display: flex;
-  gap: 2rem;
-  list-style-type: none;
-}
-.review-article .review-div .review-ul .review-li {
-  max-width: 10rem;
-  font-size: 1.25rem;
-  border-right: solid #f6f6f6;
-  padding-right: 1rem;
-}
-.review-article .review-prev {
-  background-color: #fc263a;
-  border: none;
-  border-radius: 30px;
-  color: white;
-  font-weight: 700;
-  padding: 1em;
-  padding-left: 3em;
-  padding-right: 3em;
-  margin-left: 1rem;
-}
-.review-article .review-prev:disabled {
-  background-color: #a8a8a8;
-}
-.review-article .review-next {
-  background-color: #fc263a;
-  border: none;
-  border-radius: 30px;
-  color: white;
-  font-weight: 700;
-  padding: 1em;
-  padding-left: 3em;
-  padding-right: 3em;
-  margin-left: 1rem;
-}
-.review-article .review-next:disabled {
-  background-color: #a8a8a8;
 }
 
 * {
