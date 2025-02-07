@@ -62,8 +62,6 @@ test('Should return page 3', async () => {
 
   const result = await getReviews(cmsReviews);
 
-  console.log(result.reviews)
-
   expect(result.reviews[0]).toHaveProperty('author')
   expect(result.reviews[0]).toHaveProperty('comment')
   expect(result.reviews[0]).toHaveProperty('rating')
