@@ -5,7 +5,7 @@ const cmsReviews = {
 
     pageSize = 5;
 
-    const url = (`${api}?filters[movie]=${id}&pagination[pageSize]=${pageSize}&pagination[page]=${page}`);
+    const url = (`${api}?filters[verified]=true&filters[movie]=${id}&pagination[pageSize]=${pageSize}&pagination[page]=${page}`);
 
     const res = await fetch(url)
     const data = await res.json();
