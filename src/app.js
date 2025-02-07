@@ -192,15 +192,14 @@ export default function initialize(api) {
     }
   });
 
-  app.get("/api/protected", (req, res) => {
+  app.get("/api/reviews", (req, res) => {
     const authHeader = req.headers.authorization;
     const token = authHeader?.slice(7);
 
     try {
       const payload = jsonwebtoken.verify(token, SECRET);
       res.status(200).json({
-        hello: payload.username,
-        secretData: "this is very secret",
+        ok: true,
       });
     } catch (error) {
       res.status(401).json({
