@@ -75,7 +75,8 @@ test('Returns sorted data after request', async () => {
     pagination: data.meta.pagination
   };
 
-  console.log(getReviews)
-
+  expect(getReviews.reviews[0]).toHaveProperty('author')
+  expect(getReviews.reviews[0]).toHaveProperty('comment')
+  expect(getReviews.reviews[0]).toHaveProperty('rating')
 });
 
