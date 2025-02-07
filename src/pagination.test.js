@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals';
 import request from 'supertest';
 import initialize from './app.js';
 
-test('When makes a request it return 3 reviews', async () => {
+test('When makes a request it returns 3 reviews', async () => {
 
   const app = initialize({
     getReviews: async () => ({

@@ -31,7 +31,7 @@ describe('Paginated review', () => {
   })
 });
 
-test('Should return page 3', async () => {
+test('Should return sorted data', async () => {
   const cmsReviews = {
     fetchReviews: async () => {
       return {
