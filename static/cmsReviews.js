@@ -10,16 +10,7 @@ const cmsReviews = {
     const res = await fetch(url)
     const data = await res.json();
 
-    const getReviews = {
-      reviews: data.data.map(review => ({
-        author: review.attributes.author,
-        rating: review.attributes.rating,
-        comment: review.attributes.comment,
-      })),
-      pagination: data.meta.pagination
-    };
-
-    return getReviews;
+    return data;
   }
 }
 export default cmsReviews;
