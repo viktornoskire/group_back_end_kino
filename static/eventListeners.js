@@ -45,9 +45,12 @@ t.addEventListener('click', () => {
 // __Send review inputs to swagger API__________________________
 if (document.querySelector('.movie-title')) {
   const reviewForm = document.querySelector('.review-box');
+  const login = document.querySelector(".form-container");
+  const overlay = document.querySelector(".blur");
   const API_URL = 'https://plankton-app-xhkom.ondigitalocean.app/api/';
 
   reviewForm.addEventListener('submit', async (e) => {
+    login.classList.add('active');
     e.preventDefault();
 
     const comment = reviewForm.querySelector('.review-input');
@@ -93,4 +96,9 @@ if (document.querySelector('.movie-title')) {
     rating.value = 0;
     name.value = '';
   });
+
+  reviewForm.addEventListener("submit", async () => {
+    login.classList.add("active");
+    overlay.classList.add("active");
+  })
 }
