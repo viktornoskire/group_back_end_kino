@@ -51,4 +51,30 @@ describe('reviewAdapter', () => {
       expect(mockResponse.end).toHaveBeenCalledWith();
     });
   });
+  describe('sendReviewAccess', () => {
+    it('should allow access with a valid token', () => {
+      const token = jsonwebtoken.sign({ username: 'viktor', password: 'wilma' }, KEY);
+
+      mockRequest.headers.authorization = 'Bearer ' + token;
+      reviewAdapter.sendReviewAccess(mockRequest, mockResponse);
+
+      expect(mockResponse.status).toHaveBeenCalledWith(200);
+      expect(mockResponse.json).toHaveBeenCalledWith({ ok: true });
+    });
+
+    it('should return 401 for an invalid token', () => {
+      mockRequest.headers.authorization = 'Bearer invalidToken';
+      reviewAdapter.sendReviewAccess(mockRequest, mockResponse);
+
+      expect(mockResponse.status).toHaveBeenCalledWith(401);
+      expect(mockResponse.json).toHaveBeenCalledWith({ error: 'not allowed', ok: false });
+    });
+
+    it('should return 401 if no token is provided', () => {
+      reviewAdapter.sendReviewAccess(mockRequest, mockResponse);
+
+      expect(mockResponse.status).toHaveBeenCalledWith(401);
+      expect(mockResponse.json).toHaveBeenCalledWith({ error: 'not allowed', ok: false });
+    });
+  });
 });
