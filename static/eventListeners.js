@@ -85,21 +85,12 @@ if (document.querySelector('.movie-title')) {
         },
       });
       const payload = await res.json();
-      console.log(payload);
 
       const movieID = window.location.pathname.split('/')[2];
 
       if (comment.value == '' || name.value == '') {
-        console.log('Movie ID: ', movieID);
-        console.log('Comment: ', comment.value ? comment.value : 'No comment inserted');
-        console.log('Rating: ', rating.value);
-        console.log('Name: ', name.value ? name.value : 'No name inserted');
         error.style.display = 'inline';
       } else {
-        console.log('Movie ID: ', movieID);
-        console.log('Comment: ', comment.value);
-        console.log('Rating: ', rating.value);
-        console.log('Name: ', name.value);
         try {
           fetch(API_URL + 'reviews', {
             method: 'POST',
@@ -112,7 +103,7 @@ if (document.querySelector('.movie-title')) {
                 rating: rating.value,
                 author: name.value,
                 movie: movieID,
-                verified: true,
+                verified: payload.ok,
               },
             }),
           })
